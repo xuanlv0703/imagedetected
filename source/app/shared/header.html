@@ -1,0 +1,49 @@
+<header id="header">
+    <nav class="navbar-first">
+        <div class="container">
+            <div class="navbar-right">
+                <ul>
+                    <li>
+                        <img ng-src="http://localhost:9012{{loggedUser.avatar}}" class="avatar">
+                        <a ui-sref="home.account({userId:loggedUser.id})">{{loggedUser.fullname}}</span>
+					</li>
+					<li class="hidden-xs">
+						<a ui-sref="home">FAQs</a>
+                    </li>
+                    <li class="hidden-xs"><a href="javascript:void(0);" ng-click="logout()">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar-second" role="navigation">
+        <div class="container">
+            <div id="logo-group">
+                <a class="navbar-brand" ui-sref="home.services">
+                    <img src="assets/img/logo.jpg" alt="Rutledge Logo" class="logo">
+                </a>
+            </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse main-navigation navbar-right">                
+                <script type="text/ng-template" id="treeMenu">
+                    <a target="_blank" href="{{menu.url}}">{{menu.name}}</a>    
+                    <div class="dropdown-menu sub-menu" ng-if="(list_menu | filter:{parentid : menu.id}).length > 0">
+                            <div class="block">                                
+                                <ul class="sm-links">
+                                     <li ng-repeat="menu in list_menu | filter:{parentid : menu.id} : true" ng-include="'treeMenu'"></li>
+                                </ul>
+                            </div>                               
+                    </div>    
+                </script>
+                <ul class="nav navbar-nav">                  
+                    <li ng-repeat="menu in list_menu | filter:{parentid : '0'} : true" ui-sref-active="active" ng-include="'treeMenu'"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

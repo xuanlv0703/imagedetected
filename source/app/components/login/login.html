@@ -1,0 +1,52 @@
+<style type="text/css">
+/*body {
+    background-image: url('img/login_bg.jpg')
+}*/
+</style>
+<div class="col-md-8 clear-padding-left">
+    <img class="img-bg" src="assets/img/login_bg.jpg">
+</div>
+</div>
+<div class="col-md-4 custom-login">
+    <div class="form-login">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <input id="country_selector" type="text">
+            </div>
+            <div class="form-group">
+                <img src="assets/img/logo.jpg">
+                <div class="alert alert-block alert-danger" ng-show="isFailed">
+                    <h4 class="alert-heading">Access Failed !</h4>
+                    <p>
+                        {{loginMessage}}
+                    </p>
+                </div>
+                <div class="alert alert-block alert-danger" ng-show="isNull">
+                    <h4 class="alert-heading">Warning !</h4>
+                    <p>
+                        {{nullMessage}}
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="email" placeholder="Enter email" ng-model="username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" ng-model="password">
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default" ng-click="login()">Login</button>  <button type="submit" class="btn btn-default" ui-sref="register">Register</button>
+            </div>
+            <div class="form-group">
+                <a href="#">Forgot Username | Password</a>
+            </div>
+        </form>
+    </div>
+</div>
