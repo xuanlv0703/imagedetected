@@ -40,5 +40,15 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider) {
                 }
             },
             requireAuthen: false
-        })                
+        })
+          .state('register', {
+            url: '/register',
+            views: {
+                'register@': {
+                    templateUrl: '/app/components/register/register.html',
+                    controller: 'registerCtrl'
+                }
+            },
+            requireAuthen: false
+        })                 
 });
