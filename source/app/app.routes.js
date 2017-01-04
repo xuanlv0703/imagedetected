@@ -30,17 +30,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider) {
                     templateUrl: '/app/shared/footer.html',
                 }
             }
-        })
-        .state('home.services', {
-            url: 'services',
-            views: {
-                'content@': {
-                    templateUrl: '/app/components/services/listing.html',
-                    controller: 'serviceListing'
-                }
-            }
-        })       
-        
+        })      
         .state('login', {
             url: '/login',
             views: {
@@ -50,14 +40,5 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider) {
                 }
             },
             requireAuthen: false
-        })        
-        .state('home.profile', {
-            url: 'profile/:staffId',
-            views: {
-                'content@': {
-                    templateUrl: '/app/components/profile/profile.html',
-                    controller: 'profileCtrl'
-                }
-            }
-        })        
+        })                
 });

@@ -1,4 +1,4 @@
-var app = angular.module('peopleIotApp', ['ui.router', 'datatables', 'angular-md5','ngFileUpload',
+var app = angular.module('myApp', ['ui.router', 'datatables', 'angular-md5','ngFileUpload',
     'ui.bootstrap.datetimepicker','ui-notification']);
 app.factory('ConfigService', [function() {
     return {
