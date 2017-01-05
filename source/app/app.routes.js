@@ -59,6 +59,10 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider) {
                 'content@': {
                     templateUrl: '/app/components/gallery/gallery.html',
                     controller: 'galleryCtrl'
+                },
+                'upload@home.gallery': {
+                    templateUrl: '/app/components/upload/upload.html',
+                    controller: 'uploadCtrl'
                 }
             },
             requireAuthen: true
