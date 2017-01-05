@@ -10,7 +10,12 @@ module.exports = {
         {
             url: 'menu',
             file: 'menu'
+        },
+        {
+            url: 'upload',
+            file: 'upload'
         }
+
     ],
     "database": {
         connectionLimit: 100,

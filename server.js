@@ -1,6 +1,5 @@
 var express         = require("express");
 var bodyParser = require("body-parser");
-var multipart = require('connect-multiparty');
 var mysql = require("mysql");
 var md5 = require('MD5');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
@@ -24,7 +23,6 @@ app.use(bodyParser.json({ limit: '50mb' }))
 
 app.use(express.static(__dirname))
 app.use(express.static(__dirname + '/source'))
-app.use(multipart({ uploadDir: './source/uploads' }))
 
 //cross domain.
 app.use(function(req, res, next) {
@@ -43,9 +41,9 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "/index.html")
 })
 
-app.post("/upload", function (req, res) {
-  res.json(req.files)
-})
+// app.post("/upload", function (req, res) {
+//   res.json(req.files)
+// })
 
 
 config.routes.map(addApi) // inspect the config file for details

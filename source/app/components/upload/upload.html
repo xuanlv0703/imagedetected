@@ -1,1 +1,3 @@
 <a class="btn-upload"><img class="img-circle" src="/assets/images/upload.png" ></img></a>
+<input type="file" ngf-select ng-model="picFile" multiple name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+<button ng-click="upload(picFile)">Upload</button>
