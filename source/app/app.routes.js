@@ -4,16 +4,17 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider) {
 
     $transitionsProvider.onStart({
         to: function(state) {
-            return state.requireAuthen === undefined ? true : false;
+            return state.requireAuthen;
         }
     }, function($transition$, $state, userService) {
         if (!userService.isLogin()) {
-            return $state.go('login');
+            return $state.go('home');
         }
+      
 
     });
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/');
 
     $stateProvider        
         .state('home', {
@@ -29,7 +30,8 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider) {
                 'footer@': {
                     templateUrl: '/app/shared/footer.html',
                 }
-            }
+            },
+            requireAuthen: false
         })      
         .state('login', {
             url: '/login',
@@ -50,5 +52,25 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider) {
                 }
             },
             requireAuthen: false
-        })                 
+        })  
+        .state('home.gallery', {
+            url: 'gallery',
+            views: {
+                'content@': {
+                    templateUrl: '/app/components/gallery/gallery.html',
+                    controller: 'galleryCtrl'
+                }
+            },
+            requireAuthen: true
+        })
+             .state('home.profile', {
+            url: 'profile',
+            views: {
+                'content@': {
+                    templateUrl: '/app/components/profile/profile.html',
+                    controller: 'galleryCtrl'
+                }
+            },
+            requireAuthen: true
+        })                  
 });

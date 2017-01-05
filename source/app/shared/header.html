@@ -1,14 +1,18 @@
-    <div class="header">    
-      <div class="container"> 
-         <div class="logo">
+<div class="header">
+    <div class="container">
+        <div class="logo">
             <h1><a href="index.html">Photo Hub</a></h1>
-         </div>
-         <div class="top_right">
-           <ul>
-            <li><a href="#/register">Register</a></li>|
-            <li class="login" ><a href="#/login">Login</a></li>
-           </ul>
-         </div>
-         <div class="clearfix"></div>
         </div>
+        <div class="top_right">
+            <ul ng-hide="isLogin">
+                <li><a href="#/register">Register</a></li>|
+                <li class="login"><a href="#/login">Login</a></li>
+            </ul>
+            <ul ng-show="isLogin">
+                <li ng-show="isLogin"><a href="#/profile">Profile</a></li>|
+                <li ng-show="isLogin" class="login"><a ng-click="logout()">Logout</a></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
     </div>
+</div>

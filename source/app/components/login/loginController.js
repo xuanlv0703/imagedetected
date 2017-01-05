@@ -17,7 +17,7 @@ app.controller('loginCtrl', ['$scope', '$rootScope', '$http', 'ConfigService', '
                     } else {
                         $window.localStorage.loggedUser = angular.toJson(data);
                         $http.defaults.headers.common['x-access-token'] = $window.localStorage.token;
-                        $state.go('home');
+                        $state.go('home.gallery');
                     }
                 } else {
                     $scope.isFailed = true;
