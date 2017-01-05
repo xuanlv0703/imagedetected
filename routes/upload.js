@@ -10,32 +10,26 @@ module.exports = uploadAPI;
 function uploadAPI(app) {
     var dbconnection = app.get('dbpool');
 
-	// router.put('/login', function(req, res) {
- //        var user = req.body;
+    // router.put('/login', function(req, res) {
+    //        var user = req.body;
 
- //        userPersistent.login(user, dbconnection, function(err, data) {
- //            var message = messaging(err, data);
- //            console.log(message);
- //            if (!err) {
- //                message.token = app.get('jwt').sign(user, app.get('secret'), { expiresIn: 24 * 3600 })
- //            }
- //            res.jsonp(message)
- //        })
- //    });
+    //        userPersistent.login(user, dbconnection, function(err, data) {
+    //            var message = messaging(err, data);
+    //            console.log(message);
+    //            if (!err) {
+    //                message.token = app.get('jwt').sign(user, app.get('secret'), { expiresIn: 24 * 3600 })
+    //            }
+    //            res.jsonp(message)
+    //        })
+    //    });
 
 
-	router.post('/', multipartMiddleware, function(req, resp) {
-  	console.log(req.body, req.files);
-  	// don't forget to delete all req.files when done 
-  	resp.end('done');
-	});
+    router.post('/', multipartMiddleware, function(req, resp) {
+        console.log(req.body, req.files);
+        // don't forget to delete all req.files when done 
+        resp.jsonp('done');
+    });
 
 
     return router
 }
-
-
-
-
-
-

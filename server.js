@@ -41,10 +41,6 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "/index.html")
 })
 
-// app.post("/upload", function (req, res) {
-//   res.json(req.files)
-// })
-
 
 config.routes.map(addApi) // inspect the config file for details
 
