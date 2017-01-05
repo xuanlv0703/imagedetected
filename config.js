@@ -1,5 +1,5 @@
 module.exports = {
-    'secret': 'rutledge_team',
+    'secret': 'a003_image_processing_team',
     'host': '0.0.0.0',
     'port': 9013,
     "routes": [       
@@ -17,7 +17,7 @@ module.exports = {
         host: '172.16.0.68',
         user: 'dev',
         password: 'dev123',
-        database: 'people_device_iot',
+        database: 'a003_image_processing',
         debug: false
     }
 };

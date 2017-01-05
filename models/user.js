@@ -8,23 +8,9 @@ exports.signup = function(id, staffid, username, password, fullname, email, stat
 }
 
 exports.login = function(user, connection, done) {
-    var query = "select * from user \
-    left join staff on staff.id = user.staffid\
-                where user.username = ? and user.password = ?";
+    var query = "select * from a003_users where username = ? and password = ?";
     var table = [user.name, user.password];
     query = mysql.format(query, table);
     connection.query(query, done);
 };
 
-exports.getAllUser = function(connection, done) {
-    var query = "SELECT * FROM user";
-    query = mysql.format(query);
-    connection.query(query, done);
-};
-
-exports.getUserById = function(id, connetion, done) {
-    var query = "SELECT user.*,staff.avatar FROM user left join staff on staff.id = user.staffid WHERE user.id=?";
-    var table = [id];
-    query = mysql.format(query, table);
-    connetion.query(query, done)
-}
