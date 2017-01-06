@@ -14,12 +14,18 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 
     $scope.listImages = [];
     $http.get(host + '/api/images/'+uid).then(function(res){
-        $scope.listImages = res.data.data;
+    	$scope.listImages = res.data.data.map(function(img){
+    		img.isShow = true ;
+    		return img;
+    	});
     })
 
     $scope.showloading = false;
 
     $scope.detectImg ;
+    $scope.disabled = true;
+    $scope.multipleDemo = {};
+    $scope.multipleDemo.colors =[];
     $scope.detectImage = function(img){
     	$scope.showloading = true;
     	$scope.detectImg = img ;
@@ -31,14 +37,12 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     		$scope.detectImg.tags = res.data.data;
     		console.log($scope.detectImg.tags);
                $scope.availableColors = [];
-              $scope.disabled = undefined;
+            	$scope.showloading = false;
+            	$scope.disabled = false;
               $scope.singleDemo = {};
               $scope.singleDemo.color = '';
-              $scope.multipleDemo = {};
               $scope.multipleDemo.colors = $scope.detectImg.tags;
-              $scope.showloading = false;
     	})
-        $scope.multipleDemo.colors =[];
     }
 
     $scope.multipleDemo = {};
