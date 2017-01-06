@@ -2,15 +2,22 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     '$window', 'md5', 'loginService','$timeout', function($scope, $rootScope, $http, ConfigService, $state, $window,
      md5, loginService,$timeout) {
     var host = ConfigService.host;
+
     $scope.loggedUser = angular.fromJson($window.localStorage.loggedUser);
     var uid = $scope.isLogin = $scope.loggedUser.id;
-    $scope.listImages = [];
-    $scope.detectImg ;
-    $http.get(host + '/api/images/'+uid).then(function(res){
+
+    $scope.listAlbum = [];
+    $http.get(host + '/api/album/'+uid).then(function(res){
         console.log(res.data.data)
+        $scope.listAlbum = res.data.data;
+    })
+
+    $scope.listImages = [];
+    $http.get(host + '/api/images/'+uid).then(function(res){
         $scope.listImages = res.data.data;
     })
 
+    $scope.detectImg ;
     $scope.detectImage = function(img){
     	$scope.detectImg = img ;
     	 var url = host + "/api/detect/";

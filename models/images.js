@@ -8,7 +8,7 @@ exports.save = function(imgObj,connection, done) {
 }
 
 exports.getall = function(uid,connection, done) {
-    var query = "SELECT * FROM a003_images WHERE uid = ?";
+    var query = "SELECT img.*,alb.title as album FROM a003_images img LEFT JOIN a003_album alb ON img.aid = alb.id WHERE img.uid = ?";
     var table = [uid];
     query = mysql.format(query, table);
     connection.query(query, done);
