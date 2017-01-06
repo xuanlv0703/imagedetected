@@ -86,11 +86,12 @@
 				<div class="resp-tabs-container">
 				   <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 						<ul class="tab_img">
-						  <li><a href="single.html">
+						  <li><a >
 							 <img src="/web/images/pic1.jpg" class="img-responsive" alt=""/>
 						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
+								<p>test box</p>
+								<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#detectModal"><i class="fa fa-tags"></i> Detect</button>
+								<!-- <h4>#25478921</h4> -->
 							 </div>
 						   </a></li>
 							<li><a href="single.html">
@@ -968,3 +969,30 @@
     </div>
 
     <div ui-view="upload"></div>
+<!-- start modal detect image -->
+	<div class="modal fade" id="detectModal" tabindex="-1" role="dialog" aria-labelledby="detectModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="detectModalLabel">Detect image</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							<img src="/web/images/pic29.jpg" class="img-responsive" alt="">
+						</div>
+						<div class="col-md-6 col-xs-12">
+							<form class="form-inline">
+								<div class="form-group">
+									<label for="tags">Tags:</label>
+									<input type="tags" class="form-control" id="tags">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- end modal detect image -->
