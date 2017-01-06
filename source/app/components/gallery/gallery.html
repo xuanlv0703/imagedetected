@@ -14,18 +14,19 @@
 		<section class="sky-form">
 		   <h4>Album</h4>
 			 <div class="col col-4">
-				<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>All images</label>
+				<label class="checkbox"><input ng-model="allAlbum" type="checkbox" checked="" ng-change="check_all_album()"><i></i>All images</label>
 			 </div>
 			 <div class="col col-4">
-			    <label class="checkbox" ng-repeat="alb in listAlbum" value="{{alb.id}}"><input type="checkbox" name="checkbox"><i></i>{{alb.title}}</label>
+			    <label class="checkbox" ng-repeat="alb in listAlbum"  >
+			    	<input type="checkbox" name="checkbox" checklist-model="filter.album" checklist-value="alb.id" >
+			    	<i></i>
+			    	{{alb.title}}
+			    </label>
 				<!-- <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Following</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Lorem Ipsum</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Injected humour</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Default model </label> -->
 
-				<label ng-repeat="role in roles">
-  <input type="checkbox" checklist-model="user.roles" checklist-value="role.id"> {{role.text}}
-</label>
 <button ng-click="checkAll()">a</button>
 <button ng-click="uncheckAll()">b</button>
 <button ng-click="checkFirst()">c</button>
@@ -798,12 +799,12 @@
 							<form class="">
 								<div class="form-group">
 									<label for="tags">Tags:</label>
-									  <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="multipleDemo.colors" theme="bootstrap" sortable="true" ng-disabled="disabled" style="width: 300px;" title="Choose a color">
-    <ui-select-match placeholder="Select colors...">{{$item}}</ui-select-match>
-    <ui-select-choices repeat="color in availableColors | filter:$select.search">
-      {{color}}
-    </ui-select-choices>
-  </ui-select>
+									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="tagField.list" theme="bootstrap" sortable="true" ng-disabled="tagField.disabled" style="width: 300px;" title="Choose a tag">
+										<ui-select-match placeholder="Select tags...">{{$item}}</ui-select-match>
+										<ui-select-choices repeat="tag in tagField.available | filter:$select.search">
+										{{tag}}
+										</ui-select-choices>
+									</ui-select>
 								</div>
 							</form>
 							<div class="windows8" id="loadding" ng-show="showloading">

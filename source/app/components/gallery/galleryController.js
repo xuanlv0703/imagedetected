@@ -16,63 +16,77 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     $http.get(host + '/api/images/'+uid).then(function(res){
     	$scope.listImages = res.data.data.map(function(img){
     		img.isShow = true ;
+    		img.tags = img.tags.split(";") ;
     		return img;
     	});
     })
+    $scope.filter = {};
+    $scope.filter.album = [];
 
     $scope.showloading = false;
 
     $scope.detectImg ;
     $scope.disabled = true;
-    $scope.multipleDemo = {};
-    $scope.multipleDemo.colors =[];
+    $scope.tagField = {};
+    $scope.tagField.disabled = true;
+    $scope.tagField.list 	 =[];
+    $scope.tagField.available = [];
     $scope.detectImage = function(img){
-    	$scope.showloading = true;
-    	$scope.detectImg = img ;
+    	$scope.tagField.disabled = true;
+    	$scope.showloading 		= true;
+    	$scope.detectImg 		= img ;
+    	$scope.tagField.list 	= $scope.detectImg.tags;
     	 var url = host + "/api/detect/";
     	 var filePath = "source/uploads/02YHkd0mrEqg3Vnp6HOn7EcW.jpg";
     	 var filePath = img.path;
     	 var imgObj = {filePath:filePath};
     	$http.post(url,imgObj).then(function(res){
-    		$scope.detectImg.tags = res.data.data;
-    		console.log($scope.detectImg.tags);
-               $scope.availableColors = [];
-            	$scope.showloading = false;
-            	$scope.disabled = false;
-              $scope.singleDemo = {};
-              $scope.singleDemo.color = '';
-              $scope.multipleDemo.colors = $scope.detectImg.tags;
+    		$scope.tagField.disabled 	= false;
+            $scope.showloading 			= false;
+    		$scope.tagField.available 	= res.data.data;
+    		$scope.tagField.list 		= res.data.data;
     	})
     }
 
-    $scope.multipleDemo = {};
-   $scope.updateTags = function(){
-    var imgid= $scope.detectImg.id;
-    var tags = $scope.detectImg.tags.join(';')
-    var imgObj = {imgid:imgid,tags:tags};
-    var url = host+ '/api/images/'+imgid;
-    $http.post(url,imgObj).then(function(res){
-        alert('Updated!');
-    })
-   }
+	$scope.updateTags = function(){
+		var imgid= $scope.detectImg.id;
+		var tags = $scope.tagField.list.join(';')
+		var imgObj = {imgid:imgid,tags:tags};
+		var url = host+ '/api/images/'+imgid;
+		$http.post(url,imgObj).then(function(res){
+			alert('Updated!');
+		})
+	}
 
-     $scope.roles = [
-    {id: 1, text: 'guest'},
-    {id: 2, text: 'user'},
-    {id: 3, text: 'customer'},
-    {id: 4, text: 'admin'}
-  ];
-  $scope.user = {
-    roles: [2, 4]
-  };
-  $scope.checkAll = function() {
-    $scope.user.roles = $scope.roles.map(function(item) { return item.id; });
-  };
-  $scope.uncheckAll = function() {
-    $scope.user.roles = [];
-  };
-  $scope.checkFirst = function() {
-    $scope.user.roles.splice(0, $scope.user.roles.length); 
-    $scope.user.roles.push(1);
-  };
+	$scope.allAlbum = true;
+
+	$scope.check_all_album = function(){
+		if($scope.allAlbum){
+			$scope.show_all_images();
+		}else{
+			$scope.hide_all_images();
+		}
+	}
+
+	$scope.show_all_images = function(){
+		$listImages.map(function(img){
+			img.isShow = true ;
+		})
+		$scope.checkAll();
+	}
+
+	$scope.hide_all_images = function(){
+		$listImages.map(function(img){
+			img.isShow = (img.aid == null || img.aid == "")  ;
+		})
+		$scope.uncheckAll();
+	}
+
+	$scope.checkAll = function() {
+		$scope.filter.album = $scope.listAlbum.map(function(item) { return item.id; });
+	};
+	$scope.uncheckAll = function() {
+		$scope.filter.album = [];
+	};
+
 }]);
