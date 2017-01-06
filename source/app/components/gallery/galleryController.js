@@ -17,8 +17,11 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
         $scope.listImages = res.data.data;
     })
 
+    $scope.showloading = false;
+
     $scope.detectImg ;
     $scope.detectImage = function(img){
+    	$scope.showloading = true;
     	$scope.detectImg = img ;
     	 var url = host + "/api/detect/";
     	 var filePath = "source/uploads/02YHkd0mrEqg3Vnp6HOn7EcW.jpg";
@@ -33,6 +36,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
               $scope.singleDemo.color = '';
               $scope.multipleDemo = {};
               $scope.multipleDemo.colors = $scope.detectImg.tags;
+              $scope.showloading = false;
     	})
         $scope.multipleDemo.colors =[];
     }
