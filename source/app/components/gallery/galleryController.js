@@ -27,6 +27,15 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     	$http.post(url,imgObj).then(function(res){
     		$scope.detectImg.tags = res.data.data;
     		console.log($scope.detectImg.tags);
+               $scope.availableColors = [];
+              $scope.disabled = undefined;
+              $scope.singleDemo = {};
+              $scope.singleDemo.color = '';
+              $scope.multipleDemo = {};
+              $scope.multipleDemo.colors = $scope.detectImg.tags;
     	})
+        $scope.multipleDemo.colors =[];
     }
+
+   
 }]);
