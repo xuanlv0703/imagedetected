@@ -12,15 +12,15 @@
 	 <div class="col-md-2 stock_left">
 	   <div class="w_sidebar">
 		<section class="sky-form">
-		   <h4>Collections</h4>
+		   <h4>Album</h4>
 			 <div class="col col-4">
 				<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>All images</label>
 			 </div><div class="col col-4">
-			    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Standard</label>
-				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Following</label>
+			    <label class="checkbox" ng-repeat="alb in listAlbum" id="{{alb.id}}"><input type="checkbox" name="checkbox"><i></i>{{alb.title}}</label>
+				<!-- <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Following</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Lorem Ipsum</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Injected humour</label>
-				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Default model </label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Default model </label> -->
 			</div>
 		</section>
 		<section class="sky-form">
@@ -74,6 +74,7 @@
 		</section>
 	   </div>
       </div>
+	 <button ng-click="detectImage()">Scan test</button>
 	  <div class="col-md-10 sap_tabs">	
 	       <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 			  <ul class="resp-tabs-list">
@@ -86,222 +87,24 @@
 				<div class="resp-tabs-container">
 				   <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 						<ul class="tab_img">
-						  <li><a >
-							 <img src="/web/images/pic1.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#detectModal"><i class="fa fa-tags"></i> Detect</button>
-								<!-- <h4>#25478921</h4> -->
-							 </div>
-						   </a></li>
-							<li><a href="single.html">
-							 <img src="/web/images/pic2.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-							<li><a href="single.html">
-							 <img src="/web/images/pic3.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						    <li><a href="single.html">
-							 <img src="/web/images/pic4.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic5.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic6.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic6.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic7.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic8.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic9.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic10.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic11.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic12.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic13.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic14.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic15.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic16.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic17.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic18.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic19.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic20.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic21.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic22.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic23.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic24.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic25.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic26.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic27.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic28.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic29.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-							 <button ng-click="detectImage()">Scan test</button>
-						   
+
+                    <option value="{{zone.id}}" ng-repeat="zone in list_zone">{{zone.name}}</option>
+							<li ng-repeat="img in listImages" id="{{img.id}}">
+							  	<a>
+									<img src="{{img.path}}" class="img-responsive" alt=""/>
+							    	<div class="tab_desc">
+										<p>There are many variations</p>
+										<!-- <button class="btn btn-xs btn-success" data-toggle="modal" data-target="#detectModal"><i class="fa fa-tags"></i> Detect</button> -->
+										<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#detectModal" ng-click="detectImage(img)"><i class="fa fa-tags"></i> Detect</button>
+										<!-- <h4>#25478921</h4> -->
+									</div>
+								</a>
+							</li>
+
 						   <div class="clearfix"></div>
 						</ul>
 				     </div>	
+
 				     <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
 						<ul class="tab_img">
 						  <li><a href="single.html">
@@ -982,20 +785,18 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-6 col-xs-12">
-							<img src="/web/images/pic29.jpg" class="img-responsive" alt="">
+							<img src="{{detectImg.path}}" class="img-responsive" alt="">
 						</div>
 						<div class="col-md-6 col-xs-12">
 							<form class="">
 								<div class="form-group">
 									<label for="tags">Tags:</label>
-									<input type="tags" class="form-control" id="tags">
 									  <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="multipleDemo.colors" theme="bootstrap" sortable="true" ng-disabled="disabled" style="width: 300px;" title="Choose a color">
     <ui-select-match placeholder="Select colors...">{{$item}}</ui-select-match>
     <ui-select-choices repeat="color in availableColors | filter:$select.search">
       {{color}}
     </ui-select-choices>
   </ui-select>
-  <p>Selected: {{multipleDemo.colors}}</p>
   <hr>
 								</div>
 							</form>

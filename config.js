@@ -22,6 +22,10 @@ module.exports = {
         {
             url: 'detect',
             file: 'detect'
+        },
+        {
+            url: 'album',
+            file: 'album'
         }
 
     ],
