@@ -21,6 +21,13 @@
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Lorem Ipsum</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Injected humour</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Default model </label> -->
+
+				<label ng-repeat="role in roles">
+  <input type="checkbox" checklist-model="user.roles" checklist-value="role.id"> {{role.text}}
+</label>
+<button ng-click="checkAll()">a</button>
+<button ng-click="uncheckAll()">b</button>
+<button ng-click="checkFirst()">c</button>
 			</div>
 		</section>
 		<section class="sky-form">
