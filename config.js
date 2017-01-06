@@ -14,6 +14,14 @@ module.exports = {
         {
             url: 'upload',
             file: 'upload'
+        },
+        {
+            url: 'images',
+            file: 'images'
+        },
+        {
+            url: 'detect',
+            file: 'detect'
         }
 
     ],

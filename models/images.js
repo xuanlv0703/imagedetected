@@ -7,3 +7,10 @@ exports.save = function(imgObj,connection, done) {
     connection.query(query, done);
 }
 
+exports.getall = function(uid,connection, done) {
+    var query = "SELECT * FROM a003_images WHERE uid = ?";
+    var table = [uid];
+    query = mysql.format(query, table);
+    connection.query(query, done);
+};
+
