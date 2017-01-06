@@ -45,5 +45,15 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     	})
     }
 
-   
+    $scope.multipleDemo = {};
+   $scope.updateTags = function(){
+    var imgid= $scope.detectImg.id;
+    var tags = $scope.detectImg.tags.join(';')
+    var imgObj = {imgid:imgid,tags:tags};
+    // console.log(imgid)
+    var url = host+ '/api/images/'+imgid;
+    $http.post(url,imgObj).then(function(res){
+        alert('Updated!');
+    })
+   }
 }]);

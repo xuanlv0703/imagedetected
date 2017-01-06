@@ -14,3 +14,10 @@ exports.getall = function(uid,connection, done) {
     connection.query(query, done);
 };
 
+exports.updatetags = function(tags,imgid,connection, done) {
+    var query = "UPDATE a003_images SET tags=? WHERE id=?";
+    var table = [tags,imgid];
+    query = mysql.format(query, table);
+    connection.query(query, done);
+}
+

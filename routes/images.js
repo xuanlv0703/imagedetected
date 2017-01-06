@@ -12,5 +12,11 @@ function imagesAPI(app) {
         imagesPersistent.getall(uid,dbconnection, messaging.bind(res));
     });
 
+    router.post('/:imgid', function(req, res) {
+        var imgid = req.params.imgid;
+        var tags = req.body.tags;
+        imagesPersistent.updatetags(tags,imgid,dbconnection, messaging.bind(res));
+    });
+
     return router
 }
