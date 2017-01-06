@@ -15,8 +15,9 @@
 		   <h4>Album</h4>
 			 <div class="col col-4">
 				<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>All images</label>
-			 </div><div class="col col-4">
-			    <label class="checkbox" ng-repeat="alb in listAlbum" id="{{alb.id}}"><input type="checkbox" name="checkbox"><i></i>{{alb.title}}</label>
+			 </div>
+			 <div class="col col-4">
+			    <label class="checkbox" ng-repeat="alb in listAlbum" value="{{alb.id}}"><input type="checkbox" name="checkbox"><i></i>{{alb.title}}</label>
 				<!-- <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Following</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Lorem Ipsum</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Injected humour</label>
@@ -88,7 +89,7 @@
 						<ul class="tab_img">
 
                     <option value="{{zone.id}}" ng-repeat="zone in list_zone">{{zone.name}}</option>
-							<li ng-repeat="img in listImages" id="{{img.id}}">
+							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="{{img.isShow}}">
 							  	<a>
 									<img src="{{img.path}}" class="img-responsive" alt=""/>
 							    	<div class="tab_desc">
