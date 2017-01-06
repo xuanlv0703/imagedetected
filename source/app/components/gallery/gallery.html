@@ -989,6 +989,14 @@
 								<div class="form-group">
 									<label for="tags">Tags:</label>
 									<input type="tags" class="form-control" id="tags">
+									  <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="multipleDemo.colors" theme="bootstrap" sortable="true" ng-disabled="disabled" style="width: 300px;" title="Choose a color">
+    <ui-select-match placeholder="Select colors...">{{$item}}</ui-select-match>
+    <ui-select-choices repeat="color in availableColors | filter:$select.search">
+      {{color}}
+    </ui-select-choices>
+  </ui-select>
+  <p>Selected: {{multipleDemo.colors}}</p>
+  <hr>
 								</div>
 							</form>
 						</div>

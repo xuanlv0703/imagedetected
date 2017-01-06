@@ -18,4 +18,11 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     		console.log(res);
     	})
     }
+
+      $scope.availableColors = ['Red','Green','Blue','Yellow','Magenta','Maroon','Umbra','Turquoise'];
+      $scope.disabled = undefined;
+      $scope.singleDemo = {};
+      $scope.singleDemo.color = '';
+      $scope.multipleDemo = {};
+      $scope.multipleDemo.colors = ['Blue','Red'];
 }]);
