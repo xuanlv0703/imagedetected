@@ -15,7 +15,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     $scope.listImages = [];
     $http.get(host + '/api/images/'+uid).then(function(res){
     	$scope.listImages = res.data.data.map(function(img){
-    		img.isShow = true ;
+    		img.isShow = false ;
     		img.tags = img.tags.split(";") ;
     		return img;
     	});
@@ -58,26 +58,43 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 		})
 	}
 
-	$scope.allAlbum = true;
+	$scope.allAlbum = false;
 
 	$scope.check_all_album = function(){
 		if($scope.allAlbum){
 			$scope.show_all_images();
 		}else{
-			$scope.hide_all_images();
+			$scope.filter_album();
 		}
 	}
 
 	$scope.show_all_images = function(){
-		$listImages.map(function(img){
+		$scope.listImages = $scope.listImages.map(function(img){
 			img.isShow = true ;
-		})
+			return img;
+		});
 		$scope.checkAll();
 	}
 
+	$scope.filter_album = function(){
+		$scope.allAlbum = false;
+		console.log($scope.filter.album);
+		if( $scope.filter.album.length == 0 ){
+			$scope.listImages.map(function(img){
+				img.isShow = (img.aid == null || img.aid == "")  ;
+			})
+		}else{
+			angular.forEach($scope.listImages, function(im, idx){
+				$scope.listImages[idx].isShow = ( $scope.filter.album.indexOf(img.aid) != -1) ;
+			})
+		}
+		$scope.apply()
+	}
+
 	$scope.hide_all_images = function(){
-		$listImages.map(function(img){
+		$scope.listImages = $scope.listImages.map(function(img){
 			img.isShow = (img.aid == null || img.aid == "")  ;
+			return img;
 		})
 		$scope.uncheckAll();
 	}

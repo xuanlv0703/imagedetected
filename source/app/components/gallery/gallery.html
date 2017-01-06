@@ -18,7 +18,7 @@
 			 </div>
 			 <div class="col col-4">
 			    <label class="checkbox" ng-repeat="alb in listAlbum"  >
-			    	<input type="checkbox" name="checkbox" checklist-model="filter.album" checklist-value="alb.id" >
+			    	<input type="checkbox" name="checkbox" checklist-model="filter.album" checklist-value="alb.id" ng-click="filter_album()" >
 			    	<i></i>
 			    	{{alb.title}}
 			    </label>
@@ -26,10 +26,6 @@
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Lorem Ipsum</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Injected humour</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Default model </label> -->
-
-<button ng-click="checkAll()">a</button>
-<button ng-click="uncheckAll()">b</button>
-<button ng-click="checkFirst()">c</button>
 			</div>
 		</section>
 		<section class="sky-form">
