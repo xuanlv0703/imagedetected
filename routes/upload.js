@@ -12,7 +12,11 @@ function uploadAPI(app) {
     router.post('/', multipartMiddleware, function(req, res) {
         var path = req.files.file_data.path;
         var uid = req.body.id;
-        var imgObj = {path:path,uid:uid,tags:''};
+        var aid = req.body.aid;
+        if(aid === undefined){
+        	aid = 1;
+        }
+        var imgObj = {path:path,uid:uid,tags:'',aid:aid};
          imagesPersistent.save(imgObj,dbconnection, messaging.bind(res));
     });
 

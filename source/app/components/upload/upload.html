@@ -9,6 +9,10 @@
 			</div>
 			<div class="modal-body">
             	<form enctype="multipart/form-data">
+  <select name="singleAlbum" id="singleAlbum" ng-model="singleAlbum" ng-change="changeAlbum()">
+      <option value="">---Please select album---</option>
+      <option ng-repeat="item in listAlbum" value="{{item.id}}">{{item.title}}</option>
+    </select><br><br>
 					<div class="form-group">
 						<input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
 					</div>
