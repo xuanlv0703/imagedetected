@@ -10,7 +10,7 @@ app.controller('uploadCtrl', ['$scope', '$rootScope', '$http', 'ConfigService', 
 		overwriteInitial: false,
 		maxFileSize: 5000,
 		maxFilesNum: 10,
-		uploadExtraData: {id: uid, value: '100 Details',aid:2},
+		uploadExtraData: function() {return {id: uid, value: '100 Details',aid:$('#singleAlbum').val()}},
 		//allowedFileTypes: ['image', 'video', 'flash'],
 		slugCallback: function(filename) {
 		    return filename.replace('(', '_').replace(']', '_');
