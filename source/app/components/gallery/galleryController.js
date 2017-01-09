@@ -10,12 +10,13 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     $http.get(host + '/api/album/'+uid).then(function(res){
         console.log(res.data.data)
         $scope.listAlbum = res.data.data;
+    	$scope.filter.album = $scope.listAlbum.map(function(a){return a.id});
     })
 
     $scope.listImages = [];
     $http.get(host + '/api/images/'+uid).then(function(res){
     	$scope.listImages = res.data.data.map(function(img){
-    		img.isShow = false ;
+    		img.isShow = true ;
     		img.tags = img.tags.split(";") ;
     		return img;
     	});
@@ -58,7 +59,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 		})
 	}
 
-	$scope.allAlbum = false;
+	$scope.allAlbum = true;
 
 	$scope.check_all_album = function(){
 		if($scope.allAlbum){
@@ -78,17 +79,16 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 
 	$scope.filter_album = function(){
 		$scope.allAlbum = false;
-		console.log($scope.filter.album);
 		if( $scope.filter.album.length == 0 ){
 			$scope.listImages.map(function(img){
 				img.isShow = (img.aid == null || img.aid == "")  ;
 			})
 		}else{
-			angular.forEach($scope.listImages, function(im, idx){
+			angular.forEach($scope.listImages, function(img, idx){
 				$scope.listImages[idx].isShow = ( $scope.filter.album.indexOf(img.aid) != -1) ;
 			})
 		}
-		$scope.apply()
+		// $scope.apply()
 	}
 
 	$scope.hide_all_images = function(){

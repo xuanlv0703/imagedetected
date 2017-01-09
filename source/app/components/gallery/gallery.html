@@ -93,7 +93,7 @@
 						<ul class="tab_img">
 
                     <option value="{{zone.id}}" ng-repeat="zone in list_zone">{{zone.name}}</option>
-							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="{{img.isShow}}">
+							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="img.isShow">
 							  	<a>
 									<img src="{{img.path}}" class="img-responsive" alt=""/>
 							    	<div class="tab_desc">
