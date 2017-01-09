@@ -61,44 +61,6 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 
 	$scope.allAlbum = true;
 
-	$scope.check_all_album = function(){
-		if($scope.allAlbum){
-			$scope.show_all_images();
-		}else{
-			$scope.filter_album();
-		}
-	}
-
-	$scope.show_all_images = function(){
-		$scope.listImages = $scope.listImages.map(function(img){
-			img.isShow = true ;
-			return img;
-		});
-		$scope.checkAll();
-	}
-
-	$scope.filter_album = function(){
-		$scope.allAlbum = false;
-		if( $scope.filter.album.length == 0 ){
-			$scope.listImages.map(function(img){
-				img.isShow = (img.aid == null || img.aid == "")  ;
-			})
-		}else{
-			angular.forEach($scope.listImages, function(img, idx){
-				$scope.listImages[idx].isShow = ( $scope.filter.album.indexOf(img.aid) != -1) ;
-			})
-		}
-		// $scope.apply()
-	}
-
-	$scope.hide_all_images = function(){
-		$scope.listImages = $scope.listImages.map(function(img){
-			img.isShow = (img.aid == null || img.aid == "")  ;
-			return img;
-		})
-		$scope.uncheckAll();
-	}
-
 	$scope.checkAll = function() {
 		$scope.filter.album = $scope.listAlbum.map(function(item) { return item.id; });
 	};

@@ -14,11 +14,11 @@
 		<section class="sky-form">
 		   <h4>Album</h4>
 			 <div class="col col-4">
-				<label class="checkbox"><input ng-model="allAlbum" type="checkbox" checked="" ng-change="check_all_album()"><i></i>All images</label>
+				<label class="checkbox"><input ng-model="allAlbum" type="checkbox" checked="" ng-change="checkAll()"><i></i>All images</label>
 			 </div>
 			 <div class="col col-4">
 			    <label class="checkbox" ng-repeat="alb in listAlbum"  >
-			    	<input type="checkbox" name="checkbox" checklist-model="filter.album" checklist-value="alb.id" ng-click="filter_album()" >
+			    	<input type="checkbox" checklist-model="filter.album" checklist-value="alb.id" >
 			    	<i></i>
 			    	{{alb.title}}
 			    </label>
@@ -29,16 +29,20 @@
 			</div>
 		</section>
 		<section class="sky-form">
-			<h4>Freshness</h4>
+			<h4>Tags</h4>
 			<div class="col col-4">
-				<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Any time</label>
-				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past 3 months</label>
-				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past month</label>
-			</div><div class="col col-4">
+				<!-- <label class="checkbox" ng-repeat="tag in listTags">
+					<input type="checkbox" checklist-model="filter.tags" checked=""checklist-value="tag.id" ng-click="filter_tags()" >
+					<i></i>{{tag.title}}
+				</label> -->
+				<!-- <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past 3 months</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past month</label> -->
+			</div>
+			<!-- <div class="col col-4">
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past week</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past 3 days</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Any time</label>
-			</div>
+			</div> -->
 		</section>
 		<section class="sky-form">
 			<h4>colour</h4>
@@ -93,7 +97,7 @@
 						<ul class="tab_img">
 
                     <option value="{{zone.id}}" ng-repeat="zone in list_zone">{{zone.name}}</option>
-							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="img.isShow">
+							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="allAlbum || filter.album.indexOf(img.aid) > -1">
 							  	<a>
 									<img src="{{img.path}}" class="img-responsive" alt=""/>
 							    	<div class="tab_desc">
