@@ -21,6 +21,8 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     		$scope.addTags(img.tags);
     		return img;
     	});
+
+    	$scope.listTags = $scope.listTags.sort();
     })
     $scope.filter = {};
     $scope.filter.album = [];
