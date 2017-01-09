@@ -8,16 +8,17 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 
     $scope.listAlbum = [];
     $http.get(host + '/api/album/'+uid).then(function(res){
-        console.log(res.data.data)
         $scope.listAlbum = res.data.data;
     	$scope.filter.album = $scope.listAlbum.map(function(a){return a.id});
     })
 
     $scope.listImages = [];
+    $scope.listTags = [];
     $http.get(host + '/api/images/'+uid).then(function(res){
     	$scope.listImages = res.data.data.map(function(img){
     		img.isShow = true ;
-    		img.tags = img.tags.split(";") ;
+    		img.tags = img.tags.length ? img.tags.split(";") : [];
+    		$scope.addTags(img.tags);
     		return img;
     	});
     })
@@ -49,13 +50,33 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     	})
     }
 
+    $scope.addTags = function(tags){
+    	tags.map(function(tag){
+	    	if ($scope.listTags.indexOf(tag) === -1  ) {
+		        $scope.listTags.push(tag);
+		    } 
+    	});
+    	$scope.filter.tags = $scope.listTags.slice();
+    }
+
+    $scope.filter_tags = function(){
+    	$scope.listImages.map(function(img){
+    		if(_.intersection($scope.filter.tags,img.tags).length > 0){
+    			img.isShow = true;
+    		}else{
+    			img.isShow = false;
+    		}
+    	});
+    }
+
 	$scope.updateTags = function(){
 		var imgid= $scope.detectImg.id;
 		var tags = $scope.tagField.list.join(';')
 		var imgObj = {imgid:imgid,tags:tags};
 		var url = host+ '/api/images/'+imgid;
 		$http.post(url,imgObj).then(function(res){
-			alert('Updated!');
+			$scope.detectImg.tags = tags ;
+			$scope.listImages[$scope.listImages.indexOf($scope.detectImg)].tags = $scope.detectImg.tags;
 		})
 	}
 
@@ -64,6 +85,9 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 	$scope.checkAll = function() {
 		$scope.filter.album = $scope.listAlbum.map(function(item) { return item.id; });
 	};
+	$scope.unCheckAB = function(){
+		$scope.allAlbum = false;
+	}
 	$scope.uncheckAll = function() {
 		$scope.filter.album = [];
 	};

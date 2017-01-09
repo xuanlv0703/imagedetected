@@ -18,7 +18,7 @@
 			 </div>
 			 <div class="col col-4">
 			    <label class="checkbox" ng-repeat="alb in listAlbum"  >
-			    	<input type="checkbox" checklist-model="filter.album" checklist-value="alb.id" >
+			    	<input type="checkbox" checklist-model="filter.album" checklist-value="alb.id" ng-click="unCheckAB()">
 			    	<i></i>
 			    	{{alb.title}}
 			    </label>
@@ -31,10 +31,10 @@
 		<section class="sky-form">
 			<h4>Tags</h4>
 			<div class="col col-4">
-				<!-- <label class="checkbox" ng-repeat="tag in listTags">
-					<input type="checkbox" checklist-model="filter.tags" checked=""checklist-value="tag.id" ng-click="filter_tags()" >
-					<i></i>{{tag.title}}
-				</label> -->
+				<label class="checkbox" ng-repeat="tag in listTags">
+					<input type="checkbox" checklist-model="filter.tags" checked=""checklist-value="tag" ng-click="filter_tags()" >
+					<i></i>{{tag}}
+				</label>
 				<!-- <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past 3 months</label>
 				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past month</label> -->
 			</div>
@@ -69,7 +69,7 @@
 				<li><a class="color10" href="#"></a></li>
 			</ul>
 		</section>
-		<section class="sky-form">
+		<!-- <section class="sky-form">
 			<h4>discount</h4>
 			<div class="col col-4">
 				<label class="radio"><input type="radio" name="radio" checked=""><i></i>60 % and above</label>
@@ -80,16 +80,16 @@
 				<label class="radio"><input type="radio" name="radio"><i></i>20 % and above</label>
 				<label class="radio"><input type="radio" name="radio"><i></i>10 % and above</label>
 			</div>						
-		</section>
+		</section> -->
 	   </div>
       </div>
 	  <div class="col-md-10 sap_tabs">	
 	       <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 			  <ul class="resp-tabs-list">
 			  	  <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>What's Hot</span></li>
-				  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Designers</span></li>
+				  <!-- <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Designers</span></li>
 				  <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Featured</span></li>
-				  <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span>Featured</span></li>
+				  <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span>Featured</span></li> -->
 				  <div class="clearfix"></div>
 			  </ul>				  	 
 				<div class="resp-tabs-container">
@@ -97,7 +97,7 @@
 						<ul class="tab_img">
 
                     <option value="{{zone.id}}" ng-repeat="zone in list_zone">{{zone.name}}</option>
-							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="allAlbum || filter.album.indexOf(img.aid) > -1">
+							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="(allAlbum || filter.album.indexOf(img.aid) > -1) && img.isShow">
 							  	<a>
 									<img src="{{img.path}}" class="img-responsive" alt=""/>
 							    	<div class="tab_desc">
@@ -113,7 +113,7 @@
 						</ul>
 				     </div>	
 
-				     <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+				    <!--  <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
 						<ul class="tab_img">
 						  <li><a href="single.html">
 							 <img src="/web/images/pic30.jpg" class="img-responsive" alt=""/>
@@ -757,10 +757,10 @@
 						   </a></li>
 						   <div class="clearfix"></div>
 						</ul>
-				   </div>		        					 	        					 
+				   </div>	 -->	        					 	        					 
 			  </div>	
            </div>
-           <ul class="pagination">
+           <!-- <ul class="pagination">
 	        <li>
 	          <a href="#" aria-label="Previous">
 	            <span aria-hidden="true">«</span>
@@ -776,7 +776,7 @@
 	            <span aria-hidden="true">»</span>
 	          </a>
 	        </li>
-         </ul>
+         </ul> -->
        </div>
        <div class="clearfix"> </div>
     </div>
