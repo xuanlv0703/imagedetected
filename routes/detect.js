@@ -21,8 +21,10 @@ function detectAPI(app) {
 //begin 
 var unirest = require("unirest");
     var request = require('request'),
-        apiKey = 'acc_94129a9e6f11e84 ',
-        apiSecret = '9291162050501da0ff1640e3ca01637b';
+        // apiKey = 'acc_94129a9e6f11e84 ',
+        // apiSecret = '9291162050501da0ff1640e3ca01637b';
+        apiKey = 'acc_48307d78b5ec2b1';
+        apiSecret = 'bba14f76489939f1f7ceed8ef61efb7b';
 
 var async = require('async');
 //upload image to cloud server
@@ -36,7 +38,9 @@ function createFormData(filePath,callback) {
 
 function postImage(arg1, callback) {
 
-    request.post({ url: 'https://api.imagga.com/v1/content', formData: arg1 },
+    request.post({ url: 'https://api.imagga.com/v1/content', formData: arg1, headers: {
+    'content-type': 'application/x-www-form-urlencoded'
+  } },
         function(error, response, body) {
             var data = JSON.parse(body)
             var id = data.uploaded[0].id;
