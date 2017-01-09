@@ -33,6 +33,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     $scope.tagField.disabled = true;
     $scope.tagField.list 	 =[];
     $scope.tagField.available = [];
+    $scope.gpsObj = {}
     $scope.detectImage = function(img){
     	$scope.tagField.disabled = true;
     	$scope.showloading 		= true;
@@ -47,6 +48,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
             $scope.showloading 			= false;
     		$scope.tagField.available 	= res.data.data;
     		$scope.tagField.list 		= res.data.data;
+    		$scope.gpsObj = res.data.gps;
     	})
     }
 
@@ -72,7 +74,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 	$scope.updateTags = function(){
 		var imgid= $scope.detectImg.id;
 		var tags = $scope.tagField.list.join(';')
-		var imgObj = {imgid:imgid,tags:tags};
+		var imgObj = {imgid:imgid,tags:tags,gps:$scope.gpsObj};
 		var url = host+ '/api/images/'+imgid;
 		$http.post(url,imgObj).then(function(res){
 			$scope.detectImg.tags = tags ;

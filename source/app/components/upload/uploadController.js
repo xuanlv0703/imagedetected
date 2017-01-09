@@ -8,7 +8,7 @@ app.controller('uploadCtrl', ['$scope', '$rootScope', '$http', 'ConfigService', 
 		uploadUrl: '/api/upload', // you must set a valid URL here else you will get an error
 		allowedFileExtensions : ['jpg', 'png','gif'],
 		overwriteInitial: false,
-		maxFileSize: 1000,
+		maxFileSize: 5000,
 		maxFilesNum: 10,
 		uploadExtraData: {id: uid, value: '100 Details'},
 		//allowedFileTypes: ['image', 'video', 'flash'],

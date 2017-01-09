@@ -102,7 +102,18 @@ function totalResult(filePath,res, imgdata) {
         console.log(results.one)
         console.log('===========================>>')
         console.log(results.two)
-        res.json({data:data});
+        var parser = require('exif-parser').create(imgdata);
+        var result = parser.parse();
+        var lat = result.tags.GPSLatitude;
+        var lon = result.tags.GPSLongitude;
+        if(lat===undefined){
+            lat = null;
+        }
+        if(lon === undefined){
+            lon = null;
+        }
+        var gpsObj = {lat:lat,lon:lon};
+        res.json({data:data,gps:gpsObj});
     });
 }
 
