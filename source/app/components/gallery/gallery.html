@@ -31,6 +31,7 @@
 		<section class="sky-form">
 			<h4>Tags</h4>
 			<div class="col col-4">
+			<label class="checkbox"><input ng-model="allTags" type="checkbox" checked="" ng-change="checkAllTags()"><i></i>All tags</label>
 				<label class="checkbox" ng-repeat="tag in listTags">
 					<input type="checkbox" checklist-model="filter.tags" checked=""checklist-value="tag" ng-click="filter_tags()" >
 					<i></i>{{tag}}

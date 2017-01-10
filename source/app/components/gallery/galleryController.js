@@ -93,6 +93,10 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 
 	$scope.allAlbum = true;
 
+    $scope.checkAllTags = function(){
+        
+    }
+
 	$scope.checkAll = function() {
 		$scope.filter.album = $scope.listAlbum.map(function(item) { return item.id; });
 	};
