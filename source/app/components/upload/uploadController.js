@@ -8,17 +8,33 @@ app.controller('uploadCtrl', ['$scope', '$rootScope', '$http', 'ConfigService', 
 		uploadUrl: '/api/upload', // you must set a valid URL here else you will get an error
 		allowedFileExtensions : ['jpg', 'png','gif'],
 		overwriteInitial: false,
+		uploadAsync: false,
 		maxFileSize: 5000,
 		maxFilesNum: 10,
 		uploadExtraData: function() {return {id: uid, value: '100 Details',aid:$('#singleAlbum').val()}},
 		//allowedFileTypes: ['image', 'video', 'flash'],
 		slugCallback: function(filename) {
-			console.log(filename)
 		    return filename.replace('(', '_').replace(']', '_');
 		}
+	}).on('filebatchuploadsuccess', function(event, data) {
+		if( $scope.listImages != undefined ){
+			var resImg = {
+				aid : data.response.aid
+				,album:$('#singleAlbum').text()
+				,city:null
+				,created:"2017-01-09T19:15:43.000Z"
+				,id:data.response.id
+				,isShow:true
+				,lat:null
+				,lon:null
+				,path:data.response.path
+				,tags:[]
+				,uid:uid
+			} ;
+			$scope.listImages.push(resImg);
+			$scope.$apply();
+		}
 	});
-
-	alert($scope.disabled)
 
     // $scope.upload = function(file){
 

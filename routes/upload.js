@@ -19,7 +19,7 @@ function uploadAPI(app) {
         console.log(path);
         var imgObj = {path:path,uid:uid,tags:'',aid:aid};
          imagesPersistent.save(imgObj,dbconnection, function(err,data){
-         	imgObj.imgid = data.insertId;
+         	imgObj.id = data.insertId;
          	res.json(imgObj);
          });
     });

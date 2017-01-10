@@ -38,20 +38,27 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     $scope.gpsObj = {}
     $scope.detectImage = function(img){
     	$scope.tagField.disabled = true;
-    	$scope.showloading 		= true;
-    	$scope.detectImg 		= img ;
-    	$scope.tagField.list 	= $scope.detectImg.tags;
-    	 var url = host + "/api/detect/";
-    	 var filePath = "source/uploads/02YHkd0mrEqg3Vnp6HOn7EcW.jpg";
-    	 var filePath = img.path;
-    	 var imgObj = {filePath:filePath};
-    	$http.post(url,imgObj).then(function(res){
-    		$scope.tagField.disabled 	= false;
-            $scope.showloading 			= false;
-    		$scope.tagField.available 	= res.data.data;
-    		$scope.tagField.list 		= res.data.data;
-    		$scope.gpsObj = res.data.gps;
-    	})
+    	$scope.showloading 		 = true;
+    	$scope.detectImg 		 = img ;
+
+        if( $scope.detectImg.tags.length > 0 ){
+            $scope.tagField.list    = $scope.detectImg.tags;
+            $scope.tagField.available= $scope.detectImg.tags;
+            $scope.tagField.disabled    = false;
+            $scope.showloading          = false;
+        }else{
+            var url       = host + "/api/detect/";
+            var filePath  = "source/uploads/02YHkd0mrEqg3Vnp6HOn7EcW.jpg";
+            var filePath  = img.path;
+            var imgObj    = {filePath:filePath};
+            $http.post(url,imgObj).then(function(res){
+                $scope.tagField.disabled    = false;
+                $scope.showloading          = false;
+                $scope.tagField.available   = res.data.data;
+                $scope.tagField.list        = res.data.data;
+                $scope.gpsObj = res.data.gps;
+            })
+        }
     }
 
     $scope.addTags = function(tags){
@@ -79,7 +86,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 		var imgObj = {imgid:imgid,tags:tags,gps:$scope.gpsObj};
 		var url = host+ '/api/images/'+imgid;
 		$http.post(url,imgObj).then(function(res){
-			$scope.detectImg.tags = tags ;
+			$scope.detectImg.tags = $scope.tagField.list ;
 			$scope.listImages[$scope.listImages.indexOf($scope.detectImg)].tags = $scope.detectImg.tags;
 		})
 	}
