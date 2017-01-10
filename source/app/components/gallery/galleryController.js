@@ -92,9 +92,15 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 	}
 
 	$scope.allAlbum = true;
+    $scope.allTags = true;
 
     $scope.checkAllTags = function(){
-        
+        if($scope.allTags){
+            $scope.filter.tags = $scope.listTags.slice();
+        }else{
+            $scope.filter.tags = [] ;
+        }
+        $scope.filter_tags();
     }
 
 	$scope.checkAll = function() {
