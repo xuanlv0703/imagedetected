@@ -2,8 +2,8 @@ var app = angular.module('myApp', ['ui.router', 'datatables', 'angular-md5','ngF
     'ui.bootstrap.datetimepicker','ui-notification','ngSanitize', 'ui.select','checklist-model']);
 app.factory('ConfigService', [function() {
     return {
-        host: 'http://localhost:9013',
-        hostImage:'http://localhost:9012'    
+        host: 'http://'+location.hostname+':9013',
+        hostImage:'http://'+location.hostname+':9012',  
     };
 }]);
 
