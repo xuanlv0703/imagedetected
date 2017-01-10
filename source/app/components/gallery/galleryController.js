@@ -69,14 +69,26 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     	$scope.filter.tags = $scope.listTags.slice();
     }
 
-    $scope.filter_tags = function(){
-    	$scope.listImages.map(function(img){
-    		if(_.intersection($scope.filter.tags,img.tags).length > 0){
-    			img.isShow = true;
-    		}else{
-    			img.isShow = false;
-    		}
-    	});
+    // $scope.filter_tags = function(){
+    	// $scope.listImages.map(function(img){
+    	// 	if(_.intersection($scope.filter.tags,img.tags).length > 0){
+    	// 		img.isShow = true;
+    	// 	}else{
+    	// 		img.isShow = false;
+    	// 	}
+    	// });
+    // }
+    $scope.filter_tags = function(tags){
+        if(_.intersection($scope.filter.tags,tags).length > 0){
+            return true;
+        }else{
+            return false;
+        }
+        // if($scope.filter.tags.length === 0 ){
+        //     $scope.allTags = false;
+        // }else if($scope.filter.tags.length === $scope.listTags.length){
+        //     $scope.allTags = true;
+        // }
     }
 
 	$scope.updateTags = function(){

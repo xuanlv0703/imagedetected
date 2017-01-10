@@ -33,7 +33,7 @@
 			<div class="col col-4">
 			<label class="checkbox"><input ng-model="allTags" type="checkbox" checked="" ng-change="checkAllTags()"><i></i>All tags</label>
 				<label class="checkbox" ng-repeat="tag in listTags">
-					<input type="checkbox" checklist-model="filter.tags" checked=""checklist-value="tag" ng-click="filter_tags()" >
+					<input type="checkbox" checklist-model="filter.tags" checked=""checklist-value="tag" >
 					<i></i>{{tag}}
 				</label>
 				<!-- <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past 3 months</label>
@@ -98,7 +98,7 @@
 						<ul class="tab_img">
 
                     <option value="{{zone.id}}" ng-repeat="zone in list_zone">{{zone.name}}</option>
-							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="(allAlbum || filter.album.indexOf(img.aid) > -1) && img.isShow">
+							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="(allAlbum || filter.album.indexOf(img.aid) > -1) && filter_tags(img.tags)">
 							  	<a>
 									<img src="{{img.path}}" class="img-responsive" alt=""/>
 							    	<div class="tab_desc">
