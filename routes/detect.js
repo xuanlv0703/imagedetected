@@ -106,10 +106,16 @@ function totalResult(filePath,res, imgdata) {
         console.log(results.one)
         console.log('===========================>>')
         console.log(results.two)
-        var parser = require('exif-parser').create(imgdata);
-        var result = parser.parse();
-        var lat = result.tags.GPSLatitude;
-        var lon = result.tags.GPSLongitude;
+        try{
+             var parser = require('exif-parser').create(imgdata);
+            var result = parser.parse();
+            var lat = result.tags.GPSLatitude;
+            var lon = result.tags.GPSLongitude;
+        }catch(err){
+            console.log(err)
+        }
+       
+        
         if(lat===undefined){
             lat = null;
         }
