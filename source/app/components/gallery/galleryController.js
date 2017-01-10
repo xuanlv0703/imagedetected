@@ -40,10 +40,9 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     	$scope.tagField.disabled = true;
     	$scope.showloading 		 = true;
     	$scope.detectImg 		 = img ;
-
+        $scope.tagField.list    = $scope.detectImg.tags;
+        $scope.tagField.available= $scope.detectImg.tags;
         if( $scope.detectImg.tags.length > 0 ){
-            $scope.tagField.list    = $scope.detectImg.tags;
-            $scope.tagField.available= $scope.detectImg.tags;
             $scope.tagField.disabled    = false;
             $scope.showloading          = false;
         }else{
@@ -87,6 +86,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 		var url = host+ '/api/images/'+imgid;
 		$http.post(url,imgObj).then(function(res){
 			$scope.detectImg.tags = $scope.tagField.list ;
+            console.log( $scope.detectImg.tags );
 			$scope.listImages[$scope.listImages.indexOf($scope.detectImg)].tags = $scope.detectImg.tags;
 		})
 	}
