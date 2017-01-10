@@ -1,9 +1,15 @@
 var mysql = require('mysql');
 
 exports.save = function(imgObj,connection, done) {
-    var query = "INSERT INTO a003_images(path,uid,tags,aid,created) VALUE(?,?,?,?,now())";
-    var table = [imgObj.path,imgObj.uid,imgObj.tags,imgObj.aid];
-    query = mysql.format(query, table);
+    var query = "INSERT INTO a003_images(path,uid,tags,aid,created) VALUES ";
+    // var table = [imgObj.path,imgObj.uid,imgObj.tags,imgObj.aid];
+    var rows = [], table = []
+    imgObj.map(function(img) {
+        rows.push('(?,?,?,?,now())')
+        table.push(img.path, img.uid, img.tags || '', img.aid)
+    })
+    query = mysql.format(query + rows.join(", "), table);
+    console.log(query)
     connection.query(query, done);
 }
 
@@ -29,3 +35,10 @@ exports.updatetags = function(tags,gps,imgid,connection, done) {
     connection.query(query, done);
 }
 
+exports.frompaths = function(paths,connection, done) {
+    var query = "SELECT * FROM a003_images WHERE path IN (?)";
+    // var table = ;
+    query = mysql.format(query, [paths]);
+    console.log(query);
+    connection.query(query, done);
+};
