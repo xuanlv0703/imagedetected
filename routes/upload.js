@@ -16,8 +16,12 @@ function uploadAPI(app) {
         if(aid === undefined){
         	aid = 1;
         }
+        console.log(path);
         var imgObj = {path:path,uid:uid,tags:'',aid:aid};
-         imagesPersistent.save(imgObj,dbconnection, messaging.bind(res));
+         imagesPersistent.save(imgObj,dbconnection, function(err,data){
+         	imgObj.imgid = data.insertId;
+         	res.json(imgObj);
+         });
     });
 
     return router

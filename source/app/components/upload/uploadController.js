@@ -13,10 +13,12 @@ app.controller('uploadCtrl', ['$scope', '$rootScope', '$http', 'ConfigService', 
 		uploadExtraData: function() {return {id: uid, value: '100 Details',aid:$('#singleAlbum').val()}},
 		//allowedFileTypes: ['image', 'video', 'flash'],
 		slugCallback: function(filename) {
+			console.log(filename)
 		    return filename.replace('(', '_').replace(']', '_');
 		}
 	});
 
+	alert($scope.disabled)
 
     // $scope.upload = function(file){
 
