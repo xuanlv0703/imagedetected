@@ -20,7 +20,6 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     		$scope.addTags(img.tags);
     		return img;
     	});
-        console.log($scope.listImages)
     	$scope.listTags = $scope.listTags.sort();
     })
     $scope.filter = {};
@@ -29,34 +28,37 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     $scope.showloading = false;
 
     $scope.detectImg ;
-    $scope.disabled = true;
-    $scope.tagField = {};
-    $scope.tagField.disabled = true;
-    $scope.tagField.list 	 =[];
-    $scope.tagField.available = [];
-    $scope.gpsObj = {}
-    $scope.detectImage = function(img){
-    	$scope.tagField.disabled = true;
-    	$scope.showloading 		 = true;
-    	$scope.detectImg 		 = img ;
-        $scope.tagField.list    = $scope.detectImg.tags;
+    $scope.isDetecting      = false;
+    $scope.tagField         = {'disabled':false,'list':[] , 'available' : []};
+    $scope.locationField    = {'disabled':false,'list':[] , 'available' : []};
+    $scope.titleField       = {'disabled':false,'value':'' };
+    $scope.gpsObj           = {}
+    $scope.disabledSaveImg  = true;
+
+    $scope.openImage = function(img){
+        $scope.isDetecting      = false;
+        $scope.detectImg         = angular.copy(img) ;
+        // set value for detect form
         $scope.tagField.available= $scope.detectImg.tags;
-        if( $scope.detectImg.tags.length > 0 ){
-            $scope.tagField.disabled    = false;
-            $scope.showloading          = false;
-        }else{
-            var url       = host + "/api/detect/";
-            var filePath  = "source/uploads/02YHkd0mrEqg3Vnp6HOn7EcW.jpg";
-            var filePath  = img.path;
-            var imgObj    = {filePath:filePath};
-            $http.post(url,imgObj).then(function(res){
-                $scope.tagField.disabled    = false;
-                $scope.showloading          = false;
-                $scope.tagField.available   = res.data.data;
-                $scope.tagField.list        = res.data.data;
-                $scope.gpsObj = res.data.gps;
-            })
+        // first detect for img
+        if(!$scope.detectImg.isDetected){
+            $scope.detectImage();
         }
+
+    }
+    $scope.detectImage = function(){
+        $scope.isDetecting      = true;
+
+        var url       = host + "/api/detect/";
+        var imgObj    = {filePath:$scope.detectImg.path};
+        $http.post(url,imgObj).then(function(res){
+            console.log(res);
+            $scope.tagField.available   = res.data.data;
+            $scope.tagField.list        = res.data.data;
+            $scope.gpsObj = res.data.gps;
+
+            $scope.isDetecting      = false;
+        })
     }
 
     $scope.addTags = function(tags){
@@ -100,7 +102,6 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 		var url = host+ '/api/images/'+imgid;
 		$http.post(url,imgObj).then(function(res){
 			$scope.detectImg.tags = $scope.tagField.list ;
-            console.log( $scope.detectImg.tags );
 			$scope.listImages[$scope.listImages.indexOf($scope.detectImg)].tags = $scope.detectImg.tags;
 		})
 	}

@@ -88,23 +88,20 @@
 	       <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 			  <ul class="resp-tabs-list">
 			  	  <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>What's Hot</span></li>
-				  <!-- <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Designers</span></li>
-				  <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Featured</span></li>
-				  <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span>Featured</span></li> -->
+				  <!-- <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Designers</span></li> -->
 				  <div class="clearfix"></div>
 			  </ul>				  	 
 				<div class="resp-tabs-container">
 				   <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 						<ul class="tab_img">
 
-                    <option value="{{zone.id}}" ng-repeat="zone in list_zone">{{zone.name}}</option>
 							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="(allAlbum || filter.album.indexOf(img.aid) > -1) && filter_tags(img.tags)">
-							  	<a>
+							  	<a  data-toggle="modal" data-target="#detectModal" ng-click="openImage(img)">
 									<img src="{{img.path}}" class="img-responsive" alt=""/>
 							    	<div class="tab_desc">
-										<p>There are many variations</p>
+										<p>{{img.title}}</p>
 										<!-- <button class="btn btn-xs btn-success" data-toggle="modal" data-target="#detectModal"><i class="fa fa-tags"></i> Detect</button> -->
-										<button class="btn btn-xs btn-success" data-toggle="modal" data-target="#detectModal" ng-click="detectImage(img)"><i class="fa fa-tags"></i> Detect</button>
+										<!-- <button class="btn btn-xs btn-success"><i class="fa fa-tags"></i> Detect</button> -->
 										<!-- <h4>#25478921</h4> -->
 									</div>
 								</a>
@@ -123,655 +120,18 @@
 								<h4>#25478921</h4>
 							 </div>
 						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic31.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-							<li><a href="single.html">
-							 <img src="/web/images/pic32.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						    <li><a href="single.html">
-							 <img src="/web/images/pic33.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic34.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic35.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic36.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic37.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic38.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic39.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic10.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic11.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic12.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic13.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic14.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic15.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic16.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic17.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic18.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic19.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic20.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic21.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic22.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic23.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic24.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic25.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic26.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic27.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic28.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic29.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
 						   <div class="clearfix"></div>
 						</ul>
-				     </div>	
-				     <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
-						<ul class="tab_img">
-						  <li><a href="single.html">
-							 <img src="/web/images/pic40.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-							<li><a href="single.html">
-							 <img src="/web/images/pic2.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-							<li><a href="single.html">
-							 <img src="/web/images/pic3.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						    <li><a href="single.html">
-							 <img src="/web/images/pic4.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic5.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic6.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic6.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic7.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic8.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic9.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic10.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic11.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic12.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic13.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic14.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic15.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic16.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic17.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic18.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic19.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic41.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic21.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic22.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic23.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic24.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic25.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic26.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic27.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic28.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic29.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <div class="clearfix"></div>
-						</ul>
-				     </div>	
-				     <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
-						<ul class="tab_img">
-						  <li><a href="single.html">
-							 <img src="/web/images/pic1.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-							<li><a href="single.html">
-							 <img src="/web/images/pic2.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-							<li><a href="single.html">
-							 <img src="/web/images/pic42.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						    <li><a href="single.html">
-							 <img src="/web/images/pic4.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic5.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic6.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic6.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic7.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic8.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic9.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic10.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic43.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic12.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic13.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						  </a> </li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic14.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic15.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic16.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic17.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic18.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic19.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic20.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic21.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic22.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic23.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic24.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic25.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic26.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic27.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li><a href="single.html">
-							 <img src="/web/images/pic28.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <li class="last"><a href="single.html">
-							 <img src="/web/images/pic29.jpg" class="img-responsive" alt=""/>
-						     <div class="tab_desc">
-								<p>There are many variations</p>
-								<h4>#25478921</h4>
-							 </div>
-						   </a></li>
-						   <div class="clearfix"></div>
-						</ul>
-				   </div>	 -->	        					 	        					 
+				     </div>	     					 	        					 
 			  </div>	
            </div>
-           <!-- <ul class="pagination">
+           <ul class="pagination">
 	        <li>
 	          <a href="#" aria-label="Previous">
 	            <span aria-hidden="true">«</span>
 	          </a>
 	        </li>
 	        <li><a href="#">1</a></li>
-	        <li><a href="#">2</a></li>
-	        <li><a href="#">3</a></li>
-	        <li><a href="#">4</a></li>
-	        <li><a href="#">5</a></li>
 	        <li>
 	          <a href="#" aria-label="Next">
 	            <span aria-hidden="true">»</span>
@@ -799,38 +159,35 @@
 						<div class="col-md-6 col-xs-12">
 							<form class="">
 								<div class="form-group">
+									<label for="DI_title">Title:</label>
+									<input ng-disabled="isDetecting" type="text" class="form-control" id="DI_title" ng-model="detectImg.title" />
+								</div>
+								<div class="form-group">
 									<label for="tags">Tags:</label>
-									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="tagField.list" theme="bootstrap" sortable="true" ng-disabled="tagField.disabled" style="width: 300px;" title="Choose a tag">
+									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="detectImg.tags" theme="bootstrap" sortable="true" ng-disabled="tagField.disabled" style="width: 100%;" title="Select tags">
 										<ui-select-match placeholder="Select tags...">{{$item}}</ui-select-match>
 										<ui-select-choices repeat="tag in tagField.available | filter:$select.search">
 										{{tag}}
 										</ui-select-choices>
 									</ui-select>
 								</div>
+								<div class="form-group">
+									<label for="tags">Locations:</label>
+									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="locationField.list" theme="bootstrap" sortable="true" ng-disabled="isDetecting" style="width: 100%;" title="Select locations">
+										<ui-select-match placeholder="Select locations...">{{$item}}</ui-select-match>
+										<ui-select-choices repeat="loca in locationField.available | filter:$select.search">
+										{{loca}}
+										</ui-select-choices>
+									</ui-select>
+								</div>
 							</form>
-							<div class="windows8" id="loadding" ng-show="showloading">
-								<div class="wBall" id="wBall_1">
-									<div class="wInnerBall"></div>
-								</div>
-								<div class="wBall" id="wBall_2">
-									<div class="wInnerBall"></div>
-								</div>
-								<div class="wBall" id="wBall_3">
-									<div class="wInnerBall"></div>
-								</div>
-								<div class="wBall" id="wBall_4">
-									<div class="wInnerBall"></div>
-								</div>
-								<div class="wBall" id="wBall_5">
-									<div class="wInnerBall"></div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateTags()">Save changes</button>
+					<button type="button" class="btn btn-success" ng-click="detectImage()" ng-disabled="isDetecting" ><i class="fa fa-spinner fa-spin" ng-show="isDetecting"></i> {{isDetecting?'Detecting...':'Detect'}}</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateTags()" ng-disabled="disabledSaveImg" >Save changes</button>
 				</div>
 			</div>
 		</div>
