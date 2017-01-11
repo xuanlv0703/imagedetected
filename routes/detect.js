@@ -63,7 +63,7 @@ function myProcess(arg1, callback) {
 function detectMicrosoft(callback, imgdata) {
     var req = unirest("POST", "https://api.projectoxford.ai/vision/v1.0/analyze");
     req.query({
-        "visualFeatures": 'tags',
+        "visualFeatures": 'tags,color,Description,Categories',
         "language": "en"
     });
 
@@ -78,10 +78,8 @@ function detectMicrosoft(callback, imgdata) {
     }]);
 
     req.end(function(res) {
-    	console.log(res.error)
         // if (res.error) throw new Error(res.error);
-        console.log(res.body)
-        callback(null, res.body.tags);
+        callback(null, res.body);
     });
 
 }
@@ -134,8 +132,15 @@ function totalResult(filePath,res, imgdata) {
             detectGPS(callback,imgdata)
         }
     }, function(err, results) {
-        var data = joinTags(results.one,results.two);
-        res.json({data:data,gps:results.three});
+        var miTags = results.two.tags;
+        var miColors = results.two.color;
+        var miTitle = 'Default title'
+        if(results.two.description.captions.length){
+             miTitle = results.two.description.captions[0].text;
+        }
+       
+        var data = joinTags(results.one,miTags);
+        res.json({data:data,gps:results.three,colors:miColors,title:miTitle});
     });
 }
 

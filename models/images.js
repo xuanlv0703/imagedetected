@@ -9,7 +9,6 @@ exports.save = function(imgObj,connection, done) {
         table.push(img.path, img.uid, img.tags || '', img.aid)
     })
     query = mysql.format(query + rows.join(", "), table);
-    console.log(query)
     connection.query(query, done);
 }
 
@@ -39,6 +38,5 @@ exports.frompaths = function(paths,connection, done) {
     var query = "SELECT * FROM a003_images WHERE path IN (?)";
     // var table = ;
     query = mysql.format(query, [paths]);
-    console.log(query);
     connection.query(query, done);
 };
