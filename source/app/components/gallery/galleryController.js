@@ -81,6 +81,9 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
         if(_.intersection($scope.filter.tags,tags).length > 0){
             return true;
         }else{
+            if($scope.allTags && tags.length === 0 ){
+                return true;
+            }
             return false;
         }
         // if($scope.filter.tags.length === 0 ){
