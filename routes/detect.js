@@ -99,6 +99,8 @@ function detectGPS(callback,imgdata){
     }
     if(lon === undefined){
         lon = null;
+        var gpsObj = {lat:lat,lon:lon,cities:[]};
+        callback(null,gpsObj);
     }
     else{
         cityPersistent.gettopfivebygps(lat,lon,dbconnection,function(err,data){
