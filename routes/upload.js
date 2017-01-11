@@ -22,10 +22,11 @@ function uploadAPI(app) {
         // }
         // console.log(path);
         // var imgObj = {path:path,uid:uid,tags:'',aid:aid};
-        var files = req.files.file_data.map(function(img) {
+        var files = req.files.file_data
+        if (!Array.isArray(files)) files = [files]
+        files.map(function(img) {
             img.uid = req.body.id;
             img.aid = req.body.aid;
-            return img
         })
         // imagesPersistent.save(files, dbconnection, messaging.bind(res));
          // imagesPersistent.save(files, dbconnection, function(err,data){

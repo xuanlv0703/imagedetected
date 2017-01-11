@@ -5,7 +5,6 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
 
     $scope.loggedUser = angular.fromJson($window.localStorage.loggedUser);
     var uid = $scope.isLogin = $scope.loggedUser.id;
-
     $scope.listAlbum = [];
     $http.get(host + '/api/album/'+uid).then(function(res){
         $scope.listAlbum = res.data.data;
@@ -21,7 +20,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     		$scope.addTags(img.tags);
     		return img;
     	});
-
+        console.log($scope.listImages)
     	$scope.listTags = $scope.listTags.sort();
     })
     $scope.filter = {};
