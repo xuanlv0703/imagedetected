@@ -19,6 +19,10 @@ exports.getall = function(uid,connection, done) {
     connection.query(query, done);
 };
 
+exports.update = function(imgid,tags,gps,connection, done) {
+    
+}
+
 exports.updatetags = function(tags,gps,imgid,connection, done) {
     var query = "UPDATE a003_images SET tags=?,lat=?,lon=?  WHERE id=?";
       if(gps===undefined){

@@ -16,7 +16,8 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     $http.get(host + '/api/images/'+uid).then(function(res){
     	$scope.listImages = res.data.data.map(function(img){
     		img.isShow = true ;
-    		img.tags = img.tags.length ? img.tags.split(";") : [];
+            img.tags = img.tags == null ?[]:(img.tags.length ? img.tags.split(";") : []);
+            img.city = img.city == null ?[]:(img.city.length ? img.city.split(";") : []);
     		$scope.addTags(img.tags);
     		return img;
     	});
@@ -40,6 +41,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
         $scope.detectImg         = angular.copy(img) ;
         // set value for detect form
         $scope.tagField.available= $scope.detectImg.tags;
+        $scope.locationField.available= $scope.detectImg.city;
         // first detect for img
         if(!$scope.detectImg.isDetected){
             $scope.detectImage();
@@ -70,15 +72,6 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     	$scope.filter.tags = $scope.listTags.slice();
     }
 
-    // $scope.filter_tags = function(){
-    	// $scope.listImages.map(function(img){
-    	// 	if(_.intersection($scope.filter.tags,img.tags).length > 0){
-    	// 		img.isShow = true;
-    	// 	}else{
-    	// 		img.isShow = false;
-    	// 	}
-    	// });
-    // }
     $scope.filter_tags = function(tags){
         if(_.intersection($scope.filter.tags,tags).length > 0){
             return true;
@@ -88,11 +81,16 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
             }
             return false;
         }
-        // if($scope.filter.tags.length === 0 ){
-        //     $scope.allTags = false;
-        // }else if($scope.filter.tags.length === $scope.listTags.length){
-        //     $scope.allTags = true;
-        // }
+    }
+
+    $scope.updateImg = function(){
+
+        var imgid= $scope.detectImg.id;
+        var url = host+ '/api/images/'+imgid;
+        $http.post(url,$scope.detectImg).then(function(res){
+            $scope.listImages[$scope.listImages.indexOf($scope.detectImg)].tags = $scope.detectImg.tags;
+        })
+
     }
 
 	$scope.updateTags = function(){

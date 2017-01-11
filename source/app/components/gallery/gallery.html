@@ -173,7 +173,7 @@
 								</div>
 								<div class="form-group">
 									<label for="tags">Locations:</label>
-									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="locationField.list" theme="bootstrap" sortable="true" ng-disabled="isDetecting" style="width: 100%;" title="Select locations">
+									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="detectImg.city" theme="bootstrap" sortable="true" ng-disabled="isDetecting" style="width: 100%;" title="Select locations">
 										<ui-select-match placeholder="Select locations...">{{$item}}</ui-select-match>
 										<ui-select-choices repeat="loca in locationField.available | filter:$select.search">
 										{{loca}}
@@ -187,7 +187,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-success" ng-click="detectImage()" ng-disabled="isDetecting" ><i class="fa fa-spinner fa-spin" ng-show="isDetecting"></i> {{isDetecting?'Detecting...':'Detect'}}</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateTags()" ng-disabled="disabledSaveImg" >Save changes</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateImg()" ng-disabled="isDetecting" >Save changes</button>
 				</div>
 			</div>
 		</div>
