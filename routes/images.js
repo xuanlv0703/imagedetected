@@ -14,10 +14,8 @@ function imagesAPI(app) {
 
     router.post('/:imgid', function(req, res) {
         var imgid = req.params.id;
-        var tags = req.body.tags.join(";");
-        var gps = req.body.gps;
-        // imagesPersistent.updatetags(tags,gps,imgid,dbconnection, messaging.bind(res));
-        imagesPersistent.update(imgid,tags,gps,dbconnection, messaging.bind(res));
+        var imgObj = req.body;
+        imagesPersistent.update(imgObj,dbconnection, messaging.bind(res));
     });
 
     return router

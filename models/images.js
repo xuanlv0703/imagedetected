@@ -19,24 +19,20 @@ exports.getall = function(uid,connection, done) {
     connection.query(query, done);
 };
 
-exports.update = function(imgid,tags,gps,connection, done) {
+exports.update = function(imgObj,connection, done) {
+    var query = "UPDATE a003_images SET tags=?,lat=?,lon=?,city=?,title=?  WHERE id=?"; 
+    var tags = imgObj.tags.join(";");
+    var lat = imgObj.lat;
+    var lon = imgObj.lon;
+    var city = imgObj.city.join(";");
+    var title = imgObj.title;
+    var id = imgObj.id;
+    var table = [tags,lat,lon,city,title,id];
+    query = mysql.format(query, table);
+    connection.query(query, done);
     
 }
 
-exports.updatetags = function(tags,gps,imgid,connection, done) {
-    var query = "UPDATE a003_images SET tags=?,lat=?,lon=?  WHERE id=?";
-      if(gps===undefined){
-            lat = null;
-            lon = null
-        }
-        else{
-            lat = gps.lat;
-            lon = gps.lon;
-        }   
-    var table = [tags,lat,lon,imgid];
-    query = mysql.format(query, table);
-    connection.query(query, done);
-}
 
 exports.frompaths = function(paths,connection, done) {
     var query = "SELECT * FROM a003_images WHERE path IN (?)";
