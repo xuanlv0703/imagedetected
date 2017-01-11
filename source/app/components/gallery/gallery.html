@@ -47,9 +47,15 @@
 		</section>
 		<section class="sky-form">
 			<h4>colour</h4>
+			<div class="col col-4">
+				<label class="checkbox"><input ng-model="allColor" type="checkbox" name="checkbox"><i></i>All Color</label>
+			</div>
+			<style type="text/css">
+			.w_nav2 li a.selected{border-top: 1px #BBB solid;border-left: 1px #BBB solid;border-bottom: 2px #BBB solid;border-right: 2px #BBB solid;}
+			</style>
 			<ul class="w_nav2">
-				<li><a class="color1" href="#"></a></li>
-				<li><a class="color2" href="#"></a></li>
+				<li ng-repeat="color in listColors"><a class="{{filter.color==color?'selected':''}}" style="background-color:#{{color}}" ng-click="filter.color=color"></a></li>
+				<!-- <li><a class="color2" href="#"></a></li>
 				<li><a class="color3" href="#"></a></li>
 				<li><a class="color4" href="#"></a></li>
 				<li><a class="color5" href="#"></a></li>
@@ -67,7 +73,7 @@
 				<li><a class="color7" href="#"></a></li>
 				<li><a class="color8" href="#"></a></li>
 				<li><a class="color9" href="#"></a></li>
-				<li><a class="color10" href="#"></a></li>
+				<li><a class="color10" href="#"></a></li> -->
 			</ul>
 		</section>
 		<!-- <section class="sky-form">
@@ -95,7 +101,7 @@
 				   <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 						<ul class="tab_img">
 
-							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="(allAlbum || filter.album.indexOf(img.aid) > -1) && filter_tags(img.tags)">
+							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="(allAlbum || filter.album.indexOf(img.aid) > -1) && filter_tags(img.tags) && (allColor || img.colors == filter.color)">
 							  	<a  data-toggle="modal" data-target="#detectModal" ng-click="openImage(img)">
 									<img src="{{img.path}}" class="img-responsive" alt=""/>
 							    	<div class="tab_desc">
@@ -164,7 +170,7 @@
 								</div>
 								<div class="form-group">
 									<label for="tags">Tags:</label>
-									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="detectImg.tags" theme="bootstrap" sortable="true" ng-disabled="tagField.disabled" style="width: 100%;" title="Select tags">
+									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="detectImg.tags" theme="bootstrap" sortable="true" ng-disabled="isDetecting" style="width: 100%;" title="Select tags">
 										<ui-select-match placeholder="Select tags...">{{$item}}</ui-select-match>
 										<ui-select-choices repeat="tag in tagAvailable | filter:$select.search">
 										{{tag}}
