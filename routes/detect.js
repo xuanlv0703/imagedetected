@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var imagesPersistent = require('../models/images.js');
+var cityPersistent = require('../models/city.js');
 var messaging = require('../uses').messaging;
 var _ = require('underscore');
 
@@ -14,8 +15,7 @@ function detectAPI(app) {
         totalResult(filePath,res, formData)
     });
 
-    return router
-}
+
 
 
 //begin 
@@ -80,9 +80,38 @@ function detectMicrosoft(callback, imgdata) {
     req.end(function(res) {
     	console.log(res.error)
         // if (res.error) throw new Error(res.error);
+        console.log(res.body)
         callback(null, res.body.tags);
     });
 
+}
+
+function detectGPS(callback,imgdata){
+   try{
+        var parser = require('exif-parser').create(imgdata);
+        var result = parser.parse();
+        var lat = result.tags.GPSLatitude;
+        var lon = result.tags.GPSLongitude;
+    }catch(err){
+        console.log(err)
+    }
+    
+    if(lat===undefined){
+        lat = null;
+    }
+    if(lon === undefined){
+        lon = null;
+    }
+    else{
+        cityPersistent.gettopfivebygps(lat,lon,dbconnection,function(err,data){
+            if(err){
+                data = [];
+            }
+            var gpsObj = {lat:lat,lon:lon,cities:data};
+            callback(null,gpsObj);
+        })
+    }
+    // var gpsObj = {lat:lat,lon:lon};
 }
 
 function totalResult(filePath,res, imgdata) {
@@ -100,30 +129,13 @@ function totalResult(filePath,res, imgdata) {
         },
         two: function(callback) {
             detectMicrosoft(callback, imgdata)
+        },
+        three:function(callback){
+            detectGPS(callback,imgdata)
         }
     }, function(err, results) {
         var data = joinTags(results.one,results.two);
-        console.log(results.one)
-        console.log('===========================>>')
-        console.log(results.two)
-        try{
-             var parser = require('exif-parser').create(imgdata);
-            var result = parser.parse();
-            var lat = result.tags.GPSLatitude;
-            var lon = result.tags.GPSLongitude;
-        }catch(err){
-            console.log(err)
-        }
-       
-        
-        if(lat===undefined){
-            lat = null;
-        }
-        if(lon === undefined){
-            lon = null;
-        }
-        var gpsObj = {lat:lat,lon:lon};
-        res.json({data:data,gps:gpsObj});
+        res.json({data:data,gps:results.three});
     });
 }
 
@@ -135,4 +147,7 @@ _.each(a, function(ea) {
     if (entry) result.push(entry.tag || entry.name);
 });
 return result;
+}
+
+    return router
 }
