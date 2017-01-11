@@ -142,7 +142,7 @@ function totalResult(filePath,res, imgdata) {
         }
        
         var data = joinTags(results.one,miTags);
-        res.json({data:data,gps:results.three,colors:miColors,title:miTitle});
+        res.json({tags:data,gps:results.three,colors:miColors,title:miTitle});
     });
 }
 

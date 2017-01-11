@@ -166,7 +166,7 @@
 									<label for="tags">Tags:</label>
 									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="detectImg.tags" theme="bootstrap" sortable="true" ng-disabled="tagField.disabled" style="width: 100%;" title="Select tags">
 										<ui-select-match placeholder="Select tags...">{{$item}}</ui-select-match>
-										<ui-select-choices repeat="tag in tagField.available | filter:$select.search">
+										<ui-select-choices repeat="tag in tagAvailable | filter:$select.search">
 										{{tag}}
 										</ui-select-choices>
 									</ui-select>
@@ -175,10 +175,14 @@
 									<label for="tags">Locations:</label>
 									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="detectImg.city" theme="bootstrap" sortable="true" ng-disabled="isDetecting" style="width: 100%;" title="Select locations">
 										<ui-select-match placeholder="Select locations...">{{$item}}</ui-select-match>
-										<ui-select-choices repeat="loca in locationField.available | filter:$select.search">
-										{{loca}}
+										<ui-select-choices repeat="city in cityAvailable | filter:$select.search">
+										{{city}}
 										</ui-select-choices>
 									</ui-select>
+								</div>
+								<div class="form-group">
+									<label for="tags">Color:</label>
+									<div style="cursor:pointer;width:100%;height:25px;padding: 3px 5px;;display:block;background-color:#{{detectImg.colors}}" >{{detectImg.colors}}</div>
 								</div>
 							</form>
 						</div>
