@@ -25,3 +25,10 @@ a{
 .img-circle {
     border-radius: 50%;
 }
+
+.w_nav2 li a.selected{
+	border-top: 1px #BBB solid;
+	border-left: 1px #BBB solid;
+	border-bottom: 2px #BBB solid;
+	border-right: 2px #BBB solid;
+}

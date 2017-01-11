@@ -14,6 +14,19 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     $scope.listImages   = [];
     $scope.listTags     = [];
     $scope.listColors   = [];
+    $scope.listCity     = [];
+    // filter
+    $scope.showFilter   = {'album':true,'tag':false,'city':false,'color':false};
+    $scope.filter       = {};
+    $scope.filter.album = [];
+    $scope.filter.tags  = [];
+    $scope.filter.city  = [];
+    $scope.filter.color = '';
+    $scope.allAlbum     = true;
+    $scope.allTags      = true;
+    $scope.allColor     = true;
+    $scope.allCity      = true;
+
     $http.get(host + '/api/images/'+uid).then(function(res){
     	$scope.listImages = res.data.data.map(function(img){
     		img.isShow = true ;
@@ -21,30 +34,40 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
             img.city = img.city == null ?[]:(img.city.length ? img.city.split(";") : []);
             $scope.addTags(img.tags);
             $scope.filter.tags = $scope.listTags.slice();
+            $scope.addCities(img.city);
+            $scope.filter.city = $scope.listCity.slice();
             $scope.addColor(img.colors);
     		return img;
     	});
         $scope.listTags = $scope.listTags.sort();
     	$scope.listColors = $scope.listColors.sort().reverse();
     })
-
-    // filter
-    $scope.filter = {};
-    $scope.filter.album = [];
-    $scope.filter.color = '';
-    $scope.allAlbum = true;
-    $scope.allTags = true;
-    $scope.allColor = true;
-
+    // show filter
+    $scope.collapseFilter = function(target){
+        _.each($scope.showFilter, function(value, key) {
+            if( key == target ){
+                $scope.showFilter[key] = !$scope.showFilter[key];
+            }else{
+                $scope.showFilter[key] = false ;
+            }
+        });
+    }
+    // album controller
+    $scope.checkAllAlbum = function(){
+        if($scope.allAlbum){
+            $scope.filter.album = $scope.listAlbum.map(function(item) { return item.id; });
+        }else{
+            $scope.filter.album = [] ;
+        }
+    }
+    // tag controller
     $scope.checkAllTags = function(){
         if($scope.allTags){
             $scope.filter.tags = $scope.listTags.slice();
         }else{
             $scope.filter.tags = [] ;
         }
-        $scope.filter_tags();
     }
-
     $scope.filter_tags = function(tags){
         if(_.intersection($scope.filter.tags,tags).length > 0){
             return true;
@@ -55,17 +78,6 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
             return false;
         }
     }
-
-    $scope.checkAll = function() {
-        $scope.filter.album = $scope.listAlbum.map(function(item) { return item.id; });
-    };
-    $scope.unCheckAB = function(){
-        $scope.allAlbum = false;
-    }
-    $scope.uncheckAll = function() {
-        $scope.filter.album = [];
-    };
-
     $scope.addTags = function(tags){
         tags.map(function(tag){
             if ($scope.listTags.indexOf(tag) === -1  ) {
@@ -73,12 +85,35 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
             } 
         });
     }
-
     $scope.addColor = function(color){
         if ($scope.listColors.indexOf(color) === -1  ) {
             $scope.listColors.push(color);
         } 
-        // $scope.filter.color = $scope.listColors.slice();
+    }
+    // city controller
+    $scope.checkAllCity = function(){
+        if($scope.allCity){
+            $scope.filter.city = $scope.listCity.slice();
+        }else{
+            $scope.filter.city = [] ;
+        }
+    }
+    $scope.filter_city = function(cities){
+        if(_.intersection($scope.filter.city,cities).length > 0){
+            return true;
+        }else{
+            if($scope.allCity && cities.length === 0 ){
+                return true;
+            }
+            return false;
+        }
+    }
+    $scope.addCities = function(cities){
+        cities.map(function(city){
+            if ($scope.listCity.indexOf(city) === -1  ) {
+                $scope.listCity.push(city);
+            } 
+        });
     }
 
     // edit
@@ -106,8 +141,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
         var url       = host + "/api/detect/";
         var imgObj    = {filePath:$scope.detectImg.path};
         $http.post(url,imgObj).then(function(res){
-            console.log(res);
-            // set tags
+            // set img info
             $scope.detectImg.title  = res.data.title;
 
             $scope.detectImg.tags  = res.data.tags;

@@ -12,13 +12,13 @@
 	 <div class="col-md-2 stock_left">
 	   <div class="w_sidebar">
 		<section class="sky-form">
-		   <h4>Album</h4>
-			 <div class="col col-4">
-				<label class="checkbox"><input ng-model="allAlbum" type="checkbox" checked="" ng-change="checkAll()"><i></i>All images</label>
+		   <h4><a ng-click="collapseFilter('album')"><i class="fa fa-chevron-{{showFilter.album?'down':'right'}}"></i> Album </a></h4>
+			 <div class="col col-4" ng-show="showFilter.album">
+				<label class="checkbox"><input ng-model="allAlbum" type="checkbox" checked="" ng-change="checkAllAlbum()"><i></i>All images</label>
 			 </div>
-			 <div class="col col-4">
+			 <div class="col col-4" ng-show="showFilter.album">
 			    <label class="checkbox" ng-repeat="alb in listAlbum"  >
-			    	<input type="checkbox" checklist-model="filter.album" checklist-value="alb.id" ng-click="unCheckAB()">
+			    	<input type="checkbox" checklist-model="filter.album" checklist-value="alb.id" >
 			    	<i></i>
 			    	{{alb.title}}
 			    </label>
@@ -29,9 +29,26 @@
 			</div>
 		</section>
 		<section class="sky-form">
-			<h4>Tags</h4>
-			<div class="col col-4">
-			<label class="checkbox"><input ng-model="allTags" type="checkbox" checked="" ng-change="checkAllTags()"><i></i>All tags</label>
+			<h4><a ng-click="collapseFilter('city')"><i class="fa fa-chevron-{{showFilter.city?'down':'right'}}"></i> Cities </a></h4>
+			<div class="col col-4" ng-show="showFilter.city">
+				<label class="checkbox"><input ng-model="allCity" type="checkbox" checked="" ng-change="checkAllCity()"><i></i>All city</label>
+				<label class="checkbox" ng-repeat="city in listCity">
+					<input type="checkbox" checklist-model="filter.city" checked="" checklist-value="city" >
+					<i></i>{{city}}
+				</label>
+				<!-- <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past 3 months</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past month</label> -->
+			</div>
+			<!-- <div class="col col-4">
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past week</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Past 3 days</label>
+				<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Any time</label>
+			</div> -->
+		</section>
+		<section class="sky-form">
+			<h4><a ng-click="collapseFilter('tag')"><i class="fa fa-chevron-{{showFilter.tag?'down':'right'}}"></i> Tags </a></h4>
+			<div class="col col-4" ng-show="showFilter.tag">
+				<label class="checkbox"><input ng-model="allTags" type="checkbox" checked="" ng-change="checkAllTags()"><i></i>All tags</label>
 				<label class="checkbox" ng-repeat="tag in listTags">
 					<input type="checkbox" checklist-model="filter.tags" checked=""checklist-value="tag" >
 					<i></i>{{tag}}
@@ -46,14 +63,11 @@
 			</div> -->
 		</section>
 		<section class="sky-form">
-			<h4>colour</h4>
-			<div class="col col-4">
+			<h4><a ng-click="collapseFilter('color')"><i class="fa fa-chevron-{{showFilter.color?'down':'right'}}"></i> Colour </a></h4>
+			<div class="col col-4" ng-show="showFilter.color">
 				<label class="checkbox"><input ng-model="allColor" type="checkbox" name="checkbox"><i></i>All Color</label>
 			</div>
-			<style type="text/css">
-			.w_nav2 li a.selected{border-top: 1px #BBB solid;border-left: 1px #BBB solid;border-bottom: 2px #BBB solid;border-right: 2px #BBB solid;}
-			</style>
-			<ul class="w_nav2">
+			<ul class="w_nav2" ng-show="showFilter.color">
 				<li ng-repeat="color in listColors"><a class="{{filter.color==color?'selected':''}}" style="background-color:#{{color}}" ng-click="filter.color=color"></a></li>
 				<!-- <li><a class="color2" href="#"></a></li>
 				<li><a class="color3" href="#"></a></li>
@@ -101,14 +115,14 @@
 				   <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 						<ul class="tab_img">
 
-							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="(allAlbum || filter.album.indexOf(img.aid) > -1) && filter_tags(img.tags) && (allColor || img.colors == filter.color)">
+							<li ng-repeat="img in listImages" id="{{img.id}}" ng-show="(allAlbum || filter.album.indexOf(img.aid) > -1) && filter_city(img.city) && filter_tags(img.tags) && (allColor || img.colors == filter.color)">
 							  	<a  data-toggle="modal" data-target="#detectModal" ng-click="openImage(img)">
 									<img src="{{img.path}}" class="img-responsive" alt=""/>
 							    	<div class="tab_desc">
 										<p>{{img.title}}</p>
 										<!-- <button class="btn btn-xs btn-success" data-toggle="modal" data-target="#detectModal"><i class="fa fa-tags"></i> Detect</button> -->
 										<!-- <button class="btn btn-xs btn-success"><i class="fa fa-tags"></i> Detect</button> -->
-										<!-- <h4>#25478921</h4> -->
+										<h4>{{img.album}}</h4>
 									</div>
 								</a>
 							</li>
