@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+var path = require('path');
 
 exports.save = function(imgObj,connection, done) {
     var query = "INSERT INTO a003_images(path,uid,tags,aid,created) VALUES ";
@@ -6,7 +7,7 @@ exports.save = function(imgObj,connection, done) {
     var rows = [], table = []
     imgObj.map(function(img) {
         rows.push('(?,?,?,?,now())')
-        table.push(img.path, img.uid, img.tags || '', img.aid)
+        table.push(path.join(img.path), img.uid, img.tags || '', img.aid)
     })
     query = mysql.format(query + rows.join(", "), table);
     connection.query(query, done);
