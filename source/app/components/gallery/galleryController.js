@@ -167,8 +167,20 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
                     img.title   = $scope.detectImg.title ;
                     img.tags    = $scope.detectImg.tags ;
                     $scope.addTags(img.tags);
+                    img.tags.map(function(tag){
+                        if ($scope.filter.tags.indexOf(tag) === -1  ) {
+                            $scope.filter.tags.push(tag);
+                        } 
+                    });
                     img.city    = $scope.detectImg.city ;
+                    $scope.addCities(img.city);
+                    img.city.map(function(city){
+                        if ($scope.filter.city.indexOf(city) === -1  ) {
+                            $scope.filter.city.push(city);
+                        } 
+                    });
                     img.colors  = $scope.detectImg.colors ;
+                    $scope.addColor(img.colors);
                 }
             })
         })

@@ -20,28 +20,19 @@ app.controller('uploadCtrl', ['$scope', '$rootScope', '$http', 'ConfigService', 
             }
         }).on('filebatchuploadsuccess', function(event, data) {
             var resp = data.response.data;
-            console.log(resp)
-            if ($scope.listImages != undefined) {
+            console.log(resp);
+            console.log(typeof($scope.listImages)); 
+            if ( typeof($scope.listImages) != 'undefined' ) {
+                console.log('asdasd')
                 angular.forEach(resp, function(item) {
-                	console.log(item)
-                    var resImg = {
-                        aid: item.aid,
-                        album: $('#singleAlbum').text(),
-                        city: null,
-                        created: "2017-01-09T19:15:43.000Z",
-                        id: item.id,
-                        isShow: true,
-                        lat: null,
-                        lon: null,
-                        path: item.path,
-                        tags: [],
-                        uid: uid
-                    };
-                    $scope.listImages.push(resImg);
-                $scope.$apply();
-
-                })
-			console.log($scope.listImages.slice(-10))
+                    item.isShow = true ;
+                    item.tags   = [];
+                    item.city   = [];
+                    item.colors = '';
+                	console.log(item);
+                    $scope.listImages.push(item);
+                    $scope.$apply();
+                });
             }
         });
 
