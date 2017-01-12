@@ -37,7 +37,7 @@ exports.update = function(imgObj,connection, done) {
 
 
 exports.frompaths = function(paths,connection, done) {
-    var query = "SELECT * FROM a003_images WHERE path IN (?)";
+    var query = "img.*,alb.title as album FROM a003_images img LEFT JOIN a003_album alb ON img.aid = alb.id WHERE path IN (?)";
     // var table = ;
     query = mysql.format(query, [paths]);
     connection.query(query, done);
