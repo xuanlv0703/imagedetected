@@ -21,15 +21,17 @@ exports.getall = function(uid,connection, done) {
 };
 
 exports.update = function(imgObj,connection, done) {
-    var query = "UPDATE a003_images SET tags=?,lat=?,lon=?,city=?,title=?,colors=?  WHERE id=?"; 
+    console.log(imgObj)
+    var query = "UPDATE a003_images SET tags=?,lat=?,lon=?,city=?,title=?,colors=?,alltags=?  WHERE id=?"; 
     var tags = imgObj.tags.join(";");
+    var alltags = imgObj.alltags.join(";");
     var lat = imgObj.lat;
     var lon = imgObj.lon;
     var city = imgObj.city.join(";");
     var title = imgObj.title;
     var id = imgObj.id;
     var colors = imgObj.colors;
-    var table = [tags,lat,lon,city,title,colors,id];
+    var table = [tags,lat,lon,city,title,colors,alltags,id];
     query = mysql.format(query, table);
     connection.query(query, done);
     

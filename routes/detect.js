@@ -142,7 +142,9 @@ function totalResult(filePath,res, imgdata) {
         }
        
         var data = joinTags(results.one,miTags);
-        res.json({tags:data,gps:results.three,colors:miColors,title:miTitle});
+        var allTags = miTags.concat(results.one);
+
+        res.json({tags:data,gps:results.three,colors:miColors,title:miTitle,alltags:getTags(allTags)});
     });
 }
 
@@ -152,6 +154,15 @@ function joinTags(a,b){
 _.each(a, function(ea) {
     var entry = _.find(b, function(eb) {return ea.tag == eb.name;});
     if (entry) result.push(entry.tag || entry.name);
+});
+return result;
+}
+
+function getTags(a){
+    var result = [];
+
+_.each(a, function(ea) {
+    result.push(ea.tag || ea.name);
 });
 return result;
 }

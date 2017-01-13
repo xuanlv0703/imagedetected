@@ -183,10 +183,19 @@
 									<input ng-disabled="isDetecting" type="text" class="form-control" id="DI_title" ng-model="detectImg.title" />
 								</div>
 								<div class="form-group">
-									<label for="tags">Tags:</label>
+									<label for="tags">Common Tags:</label>
 									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="detectImg.tags" theme="bootstrap" sortable="true" ng-disabled="isDetecting" style="width: 100%;" title="Select tags">
 										<ui-select-match placeholder="Select tags...">{{$item}}</ui-select-match>
 										<ui-select-choices repeat="tag in tagAvailable | filter:$select.search">
+										{{tag}}
+										</ui-select-choices>
+									</ui-select>
+								</div>
+								<div class="form-group">
+									<label for="tags">All Tags:</label>
+									<ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="detectImg.alltags" theme="bootstrap" sortable="true" ng-disabled="isDetecting" style="width: 100%;" title="Select tags">
+										<ui-select-match placeholder="Select tags...">{{$item}}</ui-select-match>
+										<ui-select-choices repeat="tag in alltagAvailable | filter:$select.search">
 										{{tag}}
 										</ui-select-choices>
 									</ui-select>

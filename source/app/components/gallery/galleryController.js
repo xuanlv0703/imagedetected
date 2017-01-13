@@ -31,6 +31,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     	$scope.listImages = res.data.data.map(function(img){
     		img.isShow = true ;
             img.tags = img.tags == null ?[]:(img.tags.length ? img.tags.split(";") : []);
+            img.alltags = img.alltags == null ?[]:(img.alltags.length ? img.alltags.split(";") : []);
             img.city = img.city == null ?[]:(img.city.length ? img.city.split(";") : []);
             $scope.addTags(img.tags);
             $scope.filter.tags = $scope.listTags.slice();
@@ -120,6 +121,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
     $scope.detectImg ;
     $scope.isDetecting      = false;
     $scope.tagAvailable     = [];
+    $scope.alltagAvailable     = [];
     $scope.cityAvailable    = [];
     $scope.gpsObj           = {}
 
@@ -128,6 +130,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
         $scope.detectImg        = angular.copy(img) ;
         // set value for detect form
         $scope.tagAvailable     = $scope.detectImg.tags;
+        $scope.alltagAvailable     = $scope.detectImg.alltags;
         $scope.cityAvailable    = $scope.detectImg.city;
         // first detect for img
         // if(!$scope.detectImg.isDetected){
@@ -145,7 +148,10 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
             $scope.detectImg.title  = res.data.title;
 
             $scope.detectImg.tags  = res.data.tags;
-            $scope.tagAvailable    = res.data.tags;
+            $scope.tagAvailable    = res.data.alltags;
+
+            $scope.detectImg.alltags  = res.data.alltags;
+            $scope.alltagAvailable    = res.data.alltags;
 
             $scope.cityAvailable   = res.data.gps.cities;
             $scope.detectImg.city  = res.data.gps.cities;
@@ -166,6 +172,7 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
                 if(img.id === $scope.detectImg.id){
                     img.title   = $scope.detectImg.title ;
                     img.tags    = $scope.detectImg.tags ;
+                    img.alltags = $scope.detectImg.alltags ;
                     $scope.addTags(img.tags);
                     img.tags.map(function(tag){
                         if ($scope.filter.tags.indexOf(tag) === -1  ) {
