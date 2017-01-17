@@ -4,6 +4,7 @@ module.exports.messaging = function (err, data) {
         "Error": !!err,
         "Message": err ? "Error execution" : "Success"
     };
+    console.log('err, data=', arguments)
     if (!err && data) message.data = data;
     // this = < response object >
     try { this.jsonp(message) }

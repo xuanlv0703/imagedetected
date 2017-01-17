@@ -21,7 +21,6 @@ exports.getall = function(uid,connection, done) {
 };
 
 exports.update = function(imgObj,connection, done) {
-    console.log(imgObj)
     var query = "UPDATE a003_images SET tags=?,lat=?,lon=?,city=?,title=?,colors=?,alltags=?  WHERE id=?"; 
     var tags = imgObj.tags.join(";");
     var alltags = imgObj.alltags.join(";");
@@ -40,7 +39,6 @@ exports.update = function(imgObj,connection, done) {
 
 exports.frompaths = function(paths,connection, done) {
     var query = "SELECT img.*,alb.title as album FROM a003_images img LEFT JOIN a003_album alb ON img.aid = alb.id WHERE path IN (?)";
-    // var table = ;
     query = mysql.format(query, [paths.map(slash)]);
     connection.query(query, done);
 };

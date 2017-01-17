@@ -10,6 +10,7 @@ module.exports = detectAPI;
 function detectAPI(app) {
     var dbconnection = app.get('dbpool');
     router.post('/', function(req, res) {
+        // console.info('body=', req.body)
         var filePath = req.body.filePath;
         formData = fs.readFileSync(filePath);
         totalResult(filePath,res, formData)
@@ -51,7 +52,11 @@ function postImage(arg1, callback) {
 function getContent(arg1, callback) {
     request.get('https://api.imagga.com/v1/tagging?content=' + arg1, function(error, response, body) {
         var data = JSON.parse(body)
-        callback(null, data.results[0].tags);
+        var tags = []
+        if(data.results !== undefined){
+            tags = data.results[0].tags
+        }
+        callback(null, tags);
     }).auth(apiKey, apiSecret, true);
 }
 
