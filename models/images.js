@@ -36,6 +36,20 @@ exports.update = function(imgObj,connection, done) {
     
 }
 
+exports.get = function(imgid,connection, done) {
+    var query = "SELECT * from a003_images WHERE id=?"; 
+    var table = [imgid];
+    query = mysql.format(query, table);
+    connection.query(query, done);
+}
+
+exports.remove = function(imgid,connection, done) {
+    var query = "DELETE from a003_images WHERE id=?"; 
+    var table = [imgid];
+    query = mysql.format(query, table);
+    connection.query(query, done);
+}
+
 
 exports.frompaths = function(paths,connection, done) {
     var query = "SELECT img.*,alb.title as album FROM a003_images img LEFT JOIN a003_album alb ON img.aid = alb.id WHERE path IN (?)";

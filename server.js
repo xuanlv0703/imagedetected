@@ -53,6 +53,6 @@ function addApi(node) {
   var url = '/api/' + node.url
   var apijs = './routes/' + node.file
   var route = require(apijs)(app)
-  require('./document')(url, route.stack)
+  // require('./document')(url, route.stack)
   app.use(url, route)
 }

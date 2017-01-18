@@ -193,5 +193,20 @@ app.controller('galleryCtrl', ['$scope', '$rootScope', '$http', 'ConfigService',
         })
     }
 
+    $scope.removeImg = function(){
+        if(confirm("Do you want to remove this image ?")){
+            var imgid= $scope.detectImg.id;
+            var url = host+ '/api/images/'+imgid;
+            $http.delete(url).then(function(res){
+                if( res.Error ){
+                    alert(res.Message);
+                }else{
+                    $('#detectModal').modal("hide");
+                    $scope.listImages = _.reject($scope.listImages, function(el) { return el.id === imgid ; });
+                }
+            })
+        }
+    }
+
 
 }]);
