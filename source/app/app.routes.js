@@ -8,7 +8,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider) {
         }
     }, function($transition$, $state, userService) {
         if (!userService.isLogin()) {
-            return $state.go('home');
+            return $state.go('login');
         }
       
 
@@ -31,7 +31,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider) {
                     templateUrl: '/app/shared/footer.html',
                 }
             },
-            requireAuthen: false
+            requireAuthen: true
         })      
         .state('login', {
             url: '/login',
