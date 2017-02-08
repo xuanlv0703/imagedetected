@@ -72,7 +72,7 @@ app.config(function($stateProvider, $urlRouterProvider, $transitionsProvider) {
             views: {
                 'content@': {
                     templateUrl: '/app/components/profile/profile.html',
-                    controller: 'galleryCtrl'
+                    controller: 'profileCtrl'
                 }
             },
             requireAuthen: true
