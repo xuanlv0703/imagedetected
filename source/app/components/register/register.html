@@ -34,8 +34,8 @@
             <form>
                 <div class="alert alert-danger" ng-show="regis.message.username!= ''||regis.message.email != ''">
                     <ul>
-                        <li>{{regis.message.username}}</li>
-                        <li>{{regis.message.email}}</li>
+                        <li ng-show="regis.message.username!= ''">{{regis.message.username}}</li>
+                        <li ng-show="regis.message.email != ''">{{regis.message.email}}</li>
                     </ul>
                 </div>
                 <div class="alert alert-danger" ng-show="">
