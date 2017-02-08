@@ -1,6 +1,6 @@
 module.exports = {
     'secret': 'a003_image_processing_team',
-    'host': '0.0.0.0',
+    'host': 'localhost',
     'port': 9013,
     "routes": [       
         {
