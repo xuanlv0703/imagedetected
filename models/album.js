@@ -7,3 +7,10 @@ exports.getall = function(uid,connection, done) {
     connection.query(query, done);
 };
 
+exports.create = function(objAlbum, connection, done) {
+	var created = new Date();
+    var query = "INSERT INTO a003_album(uid,title,description,created) VALUE(?,?,?,?)";
+    var table = [objAlbum.uid,objAlbum.title,objAlbum.description,created];
+    query = mysql.format(query, table);
+    connection.query(query, done);
+}
