@@ -52,7 +52,8 @@ function userAPI(app) {
         if(results.one == '' && results.two == ''){
             userPersistent.signup(objUser,dbconnection,function(err,data){
                 objUser.id= data.insertId;
-                var message = messaging(err, objUser);
+                var arrObjUser = [objUser];
+                var message = messaging(err, arrObjUser);
                 if (!err) {
                     message.token = app.get('jwt').sign(objUser, app.get('secret'), { expiresIn: 24 * 3600 })
                 }

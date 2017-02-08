@@ -32,3 +32,31 @@ a{
 	border-bottom: 2px #BBB solid;
 	border-right: 2px #BBB solid;
 }
+
+.register-but form button[type="submit"] {
+    background: #00C78A;
+    color: #FFF;
+    font-size: 1em;
+    padding: 0.8em 2em;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    display: inline-block;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    -ms-border-radius: 2px;
+}
+.register-but form button[type="submit"]:hover{
+	background:#555;
+}
+.register-but form button[type="submit"].disabled{
+	background:#555;
+}
+
